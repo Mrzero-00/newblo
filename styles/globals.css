@@ -1037,6 +1037,7 @@ border-bottom: 1px solid #c4c4c4;
 .userBlog_mainContents_textList_img{
   width: 360px;
   height: 211px;
+  min-width: 360px;
   border-radius: 8px;
   background-position: center;
   background-repeat: no-repeat;

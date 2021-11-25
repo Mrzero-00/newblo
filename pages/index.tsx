@@ -45,18 +45,18 @@ const Home: NextPage = () => {
 
     const [windowSize, setWindowSize] = useState(getSize);
 
-    // useEffect(() => {
-    //   if (!isClient) {
-    //     return false;
-    //   }
+    useEffect(() => {
+      if (!isClient) {
+        return false;
+      }
 
-    //   function handleResize() {
-    //     setWindowSize(getSize());
-    //   }
+      function handleResize() {
+        setWindowSize(getSize());
+      }
 
-    //   window.addEventListener('resize', handleResize);
-    //   return () => window.removeEventListener('resize', handleResize);
-    // }, ); 
+      window.addEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }, ); 
 
     return windowSize;
 

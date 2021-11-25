@@ -30,7 +30,7 @@
   }
   .ql-editor {
     box-sizing: border-box;
-    line-height: 1.42;
+    line-height: 1.8;
     height: 100%;
     outline: none;
     overflow-y: auto;
@@ -1160,18 +1160,6 @@ textarea::placeholder{
   .ql-clipboard p {
     margin: 0;
     padding: 0;
-  }
-  .ql-editor {
-    box-sizing: border-box;
-    line-height: 1.42;
-    height: 100%;
-    outline: none;
-    overflow-y: auto;
-    tab-size: 4;
-    -moz-tab-size: 4;
-    text-align: left;
-    white-space: pre-wrap;
-    word-wrap: break-word;
   }
   .ql-editor > * {
     cursor: text;
