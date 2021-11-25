@@ -98,8 +98,12 @@ function About(){
           <h1 className="textPageContents_title">{textInfo.title}</h1>
           <p className="textPageContents_summary">{textInfo.summary}</p>
           <div className="textPageContents_writerInfoBox">
-            <div className="textPageContents_writerInfoBox_profile" style={{backgroundImage:`url("https://www.newblo.co.kr${textInfo.profile_img}")`}}></div>
-            <div className="textPageContents_writerInfoBox_writer">{textInfo.nick_name}</div>
+            <Link href={`/${textInfo.my_url}`}>
+              <a className="textPageContents_writerInfoBox_profile" style={{backgroundImage:`url("https://www.newblo.co.kr${textInfo.profile_img}")`}}></a>
+            </Link>
+            <Link href={`/${textInfo.my_url}`}>
+              <a className="textPageContents_writerInfoBox_writer">{textInfo.nick_name}</a>
+            </Link>
             <div className="textPageContents_writerInfoBox_time">· {textInfo.ago_time}</div>
            
             {currentUser===textInfo.my_url&& <div className="textPageContents_write_adminBox">
@@ -120,13 +124,15 @@ function About(){
           </div>
         </div>
         <ReactQuill className="textPageContents_mainText" readOnly value={textInfo.maintext}></ReactQuill>
-        <div className="textPageContents_footer">
-          <div className="textPageContents_footer_profileImg" style={{backgroundImage:`url("https://www.newblo.co.kr${textInfo.profile_img}")`}}></div>
-          <div className="textPageContents_footer_writerInfo">
-            <div className="textPageContents_footer_writerInfo_nickName">{textInfo.nick_name}</div>
-            <div className="textPageContents_footer_writerInfo_summary">{textInfo.user_summary}</div>
-          </div>
-        </div>
+        <Link href={`/${textInfo.my_url}`}>
+          <a className="textPageContents_footer">
+            <div className="textPageContents_footer_profileImg" style={{backgroundImage:`url("https://www.newblo.co.kr${textInfo.profile_img}")`}}></div>
+            <div className="textPageContents_footer_writerInfo">
+              <div className="textPageContents_footer_writerInfo_nickName">{textInfo.nick_name}</div>
+              <div className="textPageContents_footer_writerInfo_summary">{textInfo.user_summary}</div>
+            </div>
+          </a>
+        </Link>
 
         {deletState&&<div className="deletWindow">
           <div className="deletWindow_alret">

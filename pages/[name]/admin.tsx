@@ -3,10 +3,12 @@ import { useState, useEffect } from 'react';
 import UserMainHeader from '../../components/common/UserMainHeader';
 import WriteList from '../../components/user_admin/WriteList';
 import UserInfo from '../../components/user_admin/UserInfo';
+import axios from 'axios';
 
 
 function Admin(){
 
+    const [renderState,setRenderState] = useState<boolean>(false);
     const [pageState,setPageState] = useState<number>(0);
 
     const [userState,setUserState] = useState<any>({
@@ -121,41 +123,85 @@ function Admin(){
     });
 
     useEffect(()=>{
-        setUserState({
-          ...userState,
-          userInfo:JSON.parse(sessionStorage.getItem("user_info")!)
-          });
+      userInfoApi();
     },[])
 
+    const listGetApi = async(user:any)=>{
+      const data = new FormData();
+      data.append("category","");
+      data.append("my_url",JSON.parse(sessionStorage.getItem("user_info")!).my_url);
+      data.append("type","getList");
+      try{
+        await axios(
+          {
+            method:"post",
+            url:"https://newblo.co.kr/api2/blog.php",
+            data
+          }
+        ).then((e)=>{
+          console.log(e);
+          if(e.data.ret_code ==="0000"){
+            setUserState({user_write_list:e.data.list,userInfo:user});
+            setRenderState(true);
+          }else{
+          }
+        })
+      }catch{
+      }
+  }
 
+
+    const userInfoApi = async()=>{
+      const data = new FormData();
+      data.append("my_url",JSON.parse(sessionStorage.getItem("user_info")!).my_url);
+      data.append("type","userInfo");
+      try{
+          await axios(
+          {
+              method:"post",
+              url:"https://newblo.co.kr/api2/user.php",
+              data
+          }
+          ).then((e:any)=>{
+            console.log(e);
+          if(e.data.ret_code ==="0000"){
+            listGetApi(e.data.user);
+          }else{
+          }
+          })
+      }catch{
+      }
+    }
     
     return (
-      <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
-        <UserMainHeader userUrl={userState.userInfo.my_url} nick_name={userState.userInfo.nick_name}></UserMainHeader>
-        <div style={{width:"100%",height:"1px",backgroundColor:"#dcdcdc"}}></div>
-        <div className="user_adminPage">
-            <div className="user_adminPage_list">
-                <div className="user_adminPage_list_title">블로그 관리</div>
-                <div className="user_adminPage_list_page" onClick={()=>{setPageState(0);}}>
-                    <div className={pageState===0?"user_adminPage_list_page_writeIcon_select":"user_adminPage_list_page_writeIcon"}></div>
-                    <div className={pageState===0?"user_adminPage_list_page_text_select":"user_adminPage_list_page_text"}>글 목록</div>
-                </div>
-                <div className="user_adminPage_list_page" onClick={()=>{setPageState(1);}}>
-                    <div className={pageState===1?"user_adminPage_list_page_userInfo_select":"user_adminPage_list_page_userInfo"}></div>
-                    <div className={pageState===1?"user_adminPage_list_page_text_select":"user_adminPage_list_page_text"}>회원 정보</div>
-                </div>
-                {/* <div className="user_adminPage_list_page" onClick={()=>{setPageState(2);}}>
-                    <div className={pageState===2?"user_adminPage_list_page_blogSetting_select":"user_adminPage_list_page_blogSetting"}></div>
-                    <div className={pageState===2?"user_adminPage_list_page_text_select":"user_adminPage_list_page_text"}>타이틀 설정</div>
-                </div> */}
-            </div>
-            <div className="user_adminPage_modifyPage">
-              {pageState===0&& <WriteList list={userState.user_write_list}></WriteList>}
-              {pageState===1&& <UserInfo userInfomation={userState.userInfo}></UserInfo>}
-              {/* {pageState===2&& <BlogSetting blogInfomation={userState.blogInfo}></BlogSetting>} */}
-            </div>
-        </div>
-      </div>
+      <>
+        {renderState&&<div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
+          <UserMainHeader userUrl={userState.userInfo.my_url} nick_name={userState.userInfo.nick_name}></UserMainHeader>
+          <div style={{width:"100%",height:"1px",backgroundColor:"#dcdcdc"}}></div>
+          <div className="user_adminPage">
+              <div className="user_adminPage_list">
+                  <div className="user_adminPage_list_title">블로그 관리</div>
+                  <div className="user_adminPage_list_page" onClick={()=>{setPageState(0);}}>
+                      <div className={pageState===0?"user_adminPage_list_page_writeIcon_select":"user_adminPage_list_page_writeIcon"}></div>
+                      <div className={pageState===0?"user_adminPage_list_page_text_select":"user_adminPage_list_page_text"}>글 목록</div>
+                  </div>
+                  <div className="user_adminPage_list_page" onClick={()=>{setPageState(1);}}>
+                      <div className={pageState===1?"user_adminPage_list_page_userInfo_select":"user_adminPage_list_page_userInfo"}></div>
+                      <div className={pageState===1?"user_adminPage_list_page_text_select":"user_adminPage_list_page_text"}>회원 정보</div>
+                  </div>
+                  {/* <div className="user_adminPage_list_page" onClick={()=>{setPageState(2);}}>
+                      <div className={pageState===2?"user_adminPage_list_page_blogSetting_select":"user_adminPage_list_page_blogSetting"}></div>
+                      <div className={pageState===2?"user_adminPage_list_page_text_select":"user_adminPage_list_page_text"}>타이틀 설정</div>
+                  </div> */}
+              </div>
+              <div className="user_adminPage_modifyPage">
+                {pageState===0&& <WriteList list={userState.user_write_list}></WriteList>}
+                {pageState===1&& <UserInfo userInfomation={userState.userInfo}></UserInfo>}
+                {/* {pageState===2&& <BlogSetting blogInfomation={userState.blogInfo}></BlogSetting>} */}
+              </div>
+          </div>
+        </div>}
+      </>
     );
 };
 

@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 const WriteRender =({item}:{item:any})=>{
     return(
-        <Link href={`${item.link_url}`}>
+        <Link href={`/${item.my_url}/${item.id}`}>
             <a className="user_adminPage_WriteListPage_item">
                 <div className="user_adminPage_WriteListPage_title_title">{item.title}</div>
                 <div className="user_adminPage_WriteListPage_title_category">{item.category}</div>
@@ -33,7 +33,6 @@ function WriteList({list}:{list:any}){
         setWriteList(list);
         setRenderState(true);
     },[]);
-    
     return (
         <>
             {rederState&&<div>
@@ -45,6 +44,7 @@ function WriteList({list}:{list:any}){
                     <div className="user_adminPage_WriteListPage_title_writer">작성자</div>
                 </div>
                 {writeList.map((item:any)=>(<WriteRender key={item.id} item={item}></WriteRender>))}
+                {writeList.length===0&&<div>작성된 글이 없습니다</div>}
             </div>}
         </>
     );
