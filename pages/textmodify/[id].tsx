@@ -67,7 +67,7 @@ function ModifyText(){
             }
             
         }
-
+        setText(e);
         setThumbnail(thumbnailLogic());
 
         addBtnCreate.style.top = `${top-32}px`;
@@ -79,7 +79,6 @@ function ModifyText(){
             objBtnList?.appendChild(addBtnCreate);
         }
 
-        setText(e);
     }
 
     const imgSendApi = async(img:any)=>{
@@ -237,8 +236,8 @@ function ModifyText(){
     return(
         <div>
             <div style={{width:"100%",height:"72px",marginBottom:"8px",display:"flex",justifyContent:"space-between",padding:"0px 48px",alignItems:"center"}}>
+                <div>{""}</div>
                 <div style={{display:"flex"}}>
-                    <div></div>
                     <Link href={prePage}>
                         <div className="emptyBtn" style={{marginLeft:"16px"}}>취소</div>
                     </Link>

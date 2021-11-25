@@ -1024,6 +1024,10 @@
     outline: none;
 }
 
+.editorText>.quill{
+  margin-left: 32px;
+}
+
 .editorText>.quill>.ql-container>.ql-editor{
     font-size: 18px;
     letter-spacing: -1px;

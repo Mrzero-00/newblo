@@ -68,7 +68,7 @@ function Editor(){
                 
             }
         }
-
+        setText(e);
         setThumbnail(thumbnailLogic());
 
         addBtnCreate.style.top = `${top-32}px`;
@@ -80,7 +80,6 @@ function Editor(){
             objBtnList?.appendChild(addBtnCreate);
         }
 
-        setText(e);
     }
 
     const imgSendApi = async(img:any)=>{
