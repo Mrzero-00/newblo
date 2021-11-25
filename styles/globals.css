@@ -979,6 +979,8 @@ input:focus{
   border-radius: 50%;
   margin-right: 40px;
   background-color: #fff;
+  background-position: center;
+  background-size: cover;
 }
 
 .userBlog_profileBox_info_nickname{
@@ -1180,6 +1182,8 @@ border-bottom: 1px solid #c4c4c4;
   border-radius: 50%;
   background-color: #fff;
   margin-right: 16px;
+  background-position: center;
+  background-size: cover;
 }
 
 .textPageContents_footer_writerInfo_nickName{

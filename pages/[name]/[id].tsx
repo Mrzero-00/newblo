@@ -97,7 +97,7 @@ function About(){
           <h1 className="textPageContents_title">{textInfo.title}</h1>
           <p className="textPageContents_summary">{textInfo.summary}</p>
           <div className="textPageContents_writerInfoBox">
-            <div className="textPageContents_writerInfoBox_profile"></div>
+            <div className="textPageContents_writerInfoBox_profile" style={{backgroundImage:`url("https://www.newblo.co.kr${textInfo.profile_img}")`}}></div>
             <div className="textPageContents_writerInfoBox_writer">{textInfo.nick_name}</div>
             <div className="textPageContents_writerInfoBox_time">· {textInfo.ago_time}</div>
            
@@ -120,7 +120,7 @@ function About(){
         </div>
         <ReactQuill className="textPageContents_mainText" readOnly value={textInfo.maintext}></ReactQuill>
         <div className="textPageContents_footer">
-          <div className="textPageContents_footer_profileImg"></div>
+          <div className="textPageContents_footer_profileImg" style={{backgroundImage:`url("https://www.newblo.co.kr${textInfo.profile_img}")`}}></div>
           <div className="textPageContents_footer_writerInfo">
             <div className="textPageContents_footer_writerInfo_nickName">{textInfo.nick_name}</div>
             <div className="textPageContents_footer_writerInfo_summary">{textInfo.user_summary}</div>

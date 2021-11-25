@@ -27,7 +27,7 @@ function MainContentsRender(item:any){
                         maxWidth:"360px",cursor:"pointer",display:"block"}}
                         className="mainPageView">
                         <h4 className="mainItemTitle">{item.item.title}</h4>
-                        {(item.item.thumbnail!==""&&item.item.thumbnail!=="undefined")&&<div className="mainItemThumbnail" style={{backgroundImage:`url(${item.item.thumbnail})`}}></div>}
+                        {(item.item.thumbnail!==""&&item.item.thumbnail!=="undefined")&&<div className="mainItemThumbnail" style={{backgroundImage:`url("${item.item.thumbnail}")`}}></div>}
                         <p className="mainItemSummary">{item.item.summary}</p>
                         <div className="mainItemInfoBox">
                             {/* <div className="mainItemComments">{item.item.comments}개의 코멘트 ·</div> */}
