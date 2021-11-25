@@ -241,7 +241,7 @@ function ModifyText(){
                     <Link href={prePage}>
                         <div className="emptyBtn" style={{marginLeft:"16px"}}>취소</div>
                     </Link>
-                    <div className="nomalBtn" style={{marginLeft:"8px"}} onClick={writeSendApi}>수정 발행</div>
+                    <div className="nomalBtn" style={{marginLeft:"8px"}} onClick={writeSendApi}>발행하기</div>
                 </div>
             </div>
             <div className="editorTitle">
@@ -280,7 +280,11 @@ function ModifyText(){
                     placeholder={"내용을 입력해주세요"}
                 ></ReactQuill>
 
-                <form className="objBtnList" onClick={(e:any)=>{setInputNum(e.target.className ? e.target.classList[1].substring(7)-1 : inputNum);}}>
+<form className="objBtnList" onClick={(e:any)=>{
+                    if(e.target.className!=="objBtnList" ){
+                        setInputNum(e.target.className ? e.target.classList[1].substring(7)-1 : inputNum);
+                    }
+                    }}>
                     <input type='file' id="imgUpload" style={{display:"none"}}  accept=".jpg,.jpeg,.png,.bmp,.gif" onChange={FileUploder}></input>
                     <label htmlFor="imgUpload" className="objBtn objBtn_1"></label>
                 </form>

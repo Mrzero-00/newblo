@@ -37,9 +37,6 @@ function UserContetnsRender(item:any){
                         display:(item.item.thumbnail === "" || item.item.thumbnail === "undefined")?"block":"flex",
                         justifyContent:"space-between",
                         }}>
-                        {(!item.item.thumbnail||item.item.thumbnail === ""||item.item.thumbnail !== "undefined")&&
-                        <div className="userBlog_mainContents_textList_img" style={{backgroundImage:`url(${item.item.thumbnail})`}}>
-                        </div>}
                         <div style={{minWidth:"360px"}}>
                             <p className="userPageSummary">{item.item.summary}</p>
                             <div className="userPageInfoBox">
@@ -47,6 +44,9 @@ function UserContetnsRender(item:any){
                                 <div className="userPageUploadTime">{item.item.ago_time}</div>
                             </div>
                         </div>
+                        {(!item.item.thumbnail||item.item.thumbnail === ""||item.item.thumbnail !== "undefined")&&
+                        <div className="userBlog_mainContents_textList_img" style={{backgroundImage:`url(${item.item.thumbnail})`}}>
+                        </div>}
                     </div>
 
                 </div>

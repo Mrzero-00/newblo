@@ -18,7 +18,7 @@ function Editor(){
     const [summaryEnter,setSummaryEnter] =useState<boolean>(false);
     const [prePage,setPrePage] =useState<string>("");
     const [objBtnState,setObjBtnState] = useState<boolean>(true);
-    const [inputNum,setInputNum] = useState<number>(0);
+    const [inputNum,setInputNum] = useState<any>(0);
 
 
     let textEditor:any;
@@ -96,6 +96,7 @@ function Editor(){
                 data
             }
             ).then((e)=>{
+                console.log(e);
             if(e.data.ret_code ==="0000"){
                 addObj(e.data.img);
             }else{
@@ -131,7 +132,6 @@ function Editor(){
 
     const addObj =(imgUrl:any)=>{
         textEditor = document.querySelector('.ql-editor');
-        console.log(inputNum);
         let frontContents: string ="";
         let backContents: string ="<p><br></p>";
         let middleContents: string =`<img src="https://newblo.co.kr${imgUrl}"></img>`;
@@ -219,7 +219,7 @@ function Editor(){
                     <Link href={prePage}>
                         <div className="emptyBtn" style={{marginLeft:"16px"}}>취소</div>
                     </Link>
-                    <div className="nomalBtn" style={{marginLeft:"8px"}} onClick={writeSendApi}>수정 발행</div>
+                    <div className="nomalBtn" style={{marginLeft:"8px"}} onClick={writeSendApi}>발행하기</div>
                 </div>
             </div>
             <div className="editorTitle">
@@ -259,7 +259,11 @@ function Editor(){
                     placeholder={"내용을 입력해주세요"}
                 ></ReactQuill>
 
-                <form className="objBtnList" onClick={(e:any)=>{setInputNum(e.target.className ? e.target.classList[1].substring(7)-1 : inputNum);}}>
+                <form className="objBtnList" onClick={(e:any)=>{
+                    if(e.target.className!=="objBtnList" ){
+                        setInputNum(e.target.className ? e.target.classList[1].substring(7)-1 : inputNum);
+                    }
+                    }}>
                     <input type='file' id="imgUpload" style={{display:"none"}}  accept=".jpg,.jpeg,.png,.bmp,.gif" onChange={FileUploder}></input>
                     <label htmlFor="imgUpload" className="objBtn objBtn_1"></label>
                 </form>
