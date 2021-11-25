@@ -200,9 +200,10 @@ function Editor(){
             ).then((e)=>{
                 console.log(e);
             if(e.data.ret_code ==="0000"){
-                const alink = document.createElement("a");
-                alink.href = `/${JSON.parse(sessionStorage.getItem("user_info")!).my_url}/${e.data.ret_data}`;
-                alink.click();
+                window.location.replace(`/${JSON.parse(sessionStorage.getItem("user_info")!).my_url}/${e.data.ret_data}`);
+                // const alink = document.createElement("a");
+                // alink.href = `/${JSON.parse(sessionStorage.getItem("user_info")!).my_url}/${e.data.ret_data}`;
+                // alink.click();
             }else{
             }
             })

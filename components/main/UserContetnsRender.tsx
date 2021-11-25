@@ -19,6 +19,8 @@ type Props = {
 };
 
 function UserContetnsRender(item:any){
+    
+    console.log(item.item.thumbnail);
     return(
         <Link href={`/${item.item.my_url}/${item.item.id}`}>
             <a style={{
@@ -32,10 +34,10 @@ function UserContetnsRender(item:any){
                     <h4 className="userPageTitle">{item.item.title}</h4>
                     <div style={{
                         width:"100%",
-                        display:item.item.thumbnail !==""?"flex":"block",
+                        display:(item.item.thumbnail === "" || item.item.thumbnail === "undefined")?"block":"flex",
                         justifyContent:"space-between",
                         }}>
-                        {item.item.thumbnail&&
+                        {(!item.item.thumbnail||item.item.thumbnail === ""||item.item.thumbnail !== "undefined")&&
                         <div className="userBlog_mainContents_textList_img" style={{backgroundImage:`url(${item.item.thumbnail})`}}>
                         </div>}
                         <div style={{minWidth:"360px"}}>
