@@ -38,7 +38,7 @@ function Login(){
           }
         ).then((e:any)=>{
           if(e.data.ret_code ==="0000"){
-
+            console.log(e);
             sessionStorage.setItem("user_info",JSON.stringify({
               hash:e.data.hash, 
               my_url:e.data.user.my_url, 
