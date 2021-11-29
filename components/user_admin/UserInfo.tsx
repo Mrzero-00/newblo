@@ -3,7 +3,7 @@ import * as React from 'react';
 import { useState ,useEffect } from 'react';
 
 
-function UserInfo({userInfomation}:{userInfomation:any}){
+function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:Function}){
     const [userInfo,setUserInfo] = useState<any>({
         email: "mrprins90@naver.com",
         hash: "",
@@ -44,8 +44,6 @@ function UserInfo({userInfomation}:{userInfomation:any}){
 
     const signupInfoApi = async(click:any,img:any)=>{
         const {name, value} = click.target;
-        console.log(name);
-        console.log(img);
         if(name === "nick_name"){
             if(nicknameCheck(userInfo.nick_name)){
                 const data = new FormData();
@@ -180,14 +178,15 @@ function UserInfo({userInfomation}:{userInfomation:any}){
                         data
                     }
                     ).then((e:any)=>{
-                        console.log(e);
                     if(e.data.ret_code ==="0000"){
+
                     }else{
                     }
                     })
                 }catch{
                 }
         }
+        userInfoApi();
         
     }
     

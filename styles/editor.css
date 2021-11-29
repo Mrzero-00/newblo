@@ -60,7 +60,7 @@
   }
   .ql-editor ol,
   .ql-editor ul {
-    padding-left: 1.5em;
+    /* padding-left: 1.5em; */
   }
   .ql-editor ol > li,
   .ql-editor ul > li {
@@ -1181,7 +1181,7 @@ textarea::placeholder{
   }
   .ql-editor ol,
   .ql-editor ul {
-    padding-left: 1.5em;
+    /* padding-left: 1.5em; */
   }
   .ql-editor ol > li,
   .ql-editor ul > li {

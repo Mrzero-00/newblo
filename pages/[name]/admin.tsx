@@ -163,8 +163,13 @@ function Admin(){
               data
           }
           ).then((e:any)=>{
-            console.log(e);
           if(e.data.ret_code ==="0000"){
+            console.log(e);
+            sessionStorage.setItem("user_info",JSON.stringify({
+              ...JSON.parse(sessionStorage.getItem("user_info")!),
+              profile_img:e.data.user.profile_img,
+              nick_name:e.data.user.nick_name
+            }));
             listGetApi(e.data.user);
           }else{
           }
@@ -196,7 +201,7 @@ function Admin(){
               </div>
               <div className="user_adminPage_modifyPage">
                 {pageState===0&& <WriteList list={userState.user_write_list}></WriteList>}
-                {pageState===1&& <UserInfo userInfomation={userState.userInfo}></UserInfo>}
+                {pageState===1&& <UserInfo userInfomation={userState.userInfo} userInfoApi={userInfoApi}></UserInfo>}
                 {/* {pageState===2&& <BlogSetting blogInfomation={userState.blogInfo}></BlogSetting>} */}
               </div>
           </div>
