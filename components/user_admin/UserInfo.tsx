@@ -304,7 +304,7 @@ function UserInfo({userInfomation}:{userInfomation:any}){
                 <div className="userInputPage">닉네임*</div>
                 {!changeState_nickName?<div className="user_adminPage_userInfoPage_btn" onClick={()=>{setChangeState_nickName(true);}}>변경</div>
                 :<div style={{display:"flex",alignItems:"center"}}>
-                    <button className="user_adminPage_userInfoPage_savebtn" name="nick_name" onClick={signupInfoApi}>저장</button>
+                    <button className="user_adminPage_userInfoPage_savebtn" name="nick_name" onClick={(e:any)=>{signupInfoApi(e,null)}}>저장</button>
                     <button className="user_adminPage_userInfoPage_btn" name="nick_name" onClick={cancelLogic}>취소</button>
                 </div>}
             </div>
@@ -318,7 +318,7 @@ function UserInfo({userInfomation}:{userInfomation:any}){
                 <div className="userInputPage">한 줄 소개</div>
                 {!changeState_summary?<div className="user_adminPage_userInfoPage_btn" onClick={()=>{setChangeState_summary(true);}}>변경</div>
                 :<div style={{display:"flex",alignItems:"center"}}>
-                    <button className="user_adminPage_userInfoPage_savebtn" name="summary" onClick={signupInfoApi}>저장</button>
+                    <button className="user_adminPage_userInfoPage_savebtn" name="summary" onClick={(e:any)=>{signupInfoApi(e,null)}}>저장</button>
                     <button className="user_adminPage_userInfoPage_btn" name="summary" onClick={cancelLogic}>취소</button>
                 </div>}
             </div>
@@ -332,12 +332,12 @@ function UserInfo({userInfomation}:{userInfomation:any}){
             <div className="userInputPage" style={{marginTop:"20px",marginBottom:"20px"}}>뉴스레터 수신(선택)</div>
             <div style={{display:"flex",alignItems:"center"}}>
                 <div className="marketing_box">
-                    <button className={userInfo.marketing_use==="true"?"radio_on":"radio_off"} name="marketing_use" value="true" onClick={signupInfoApi}></button>
+                    <button className={userInfo.marketing_use==="true"?"radio_on":"radio_off"} name="marketing_use" value="true" onClick={(e:any)=>{signupInfoApi(e,null)}}></button>
                     <div>예</div>
                 </div>
 
                 <div className="marketing_box">
-                    <button className={userInfo.marketing_use==="false"?"radio_on":"radio_off"} name="marketing_use" value="false" onClick={signupInfoApi}></button>
+                    <button className={userInfo.marketing_use==="false"?"radio_on":"radio_off"} name="marketing_use" value="false" onClick={(e:any)=>{signupInfoApi(e,null)}}></button>
                     <div>아니오</div>
                 </div>
             </div>
