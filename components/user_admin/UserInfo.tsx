@@ -7,7 +7,7 @@ function UserInfo({userInfomation}:{userInfomation:any}){
     const [userInfo,setUserInfo] = useState<any>({
         email: "mrprins90@naver.com",
         hash: "",
-        marketing_use: false,
+        marketing_use: "false",
         nick_name: "ㅇㅇㅇㅇ",
         summary: "",
         profile_img:"",
@@ -16,7 +16,7 @@ function UserInfo({userInfomation}:{userInfomation:any}){
     const [changeInfo,setChangeInfo] = useState<any>({
         email: "mrprins90@naver.com",
         hash: "",
-        marketing_use: false,
+        marketing_use: "false",
         nick_name: "ㅇㅇㅇㅇ",
         summary: ""
     })
@@ -42,56 +42,158 @@ function UserInfo({userInfomation}:{userInfomation:any}){
         }
     }
 
-    const signupInfoApi = async(click:any)=>{
-        if(nicknameCheck(userInfo.nick_name)){
+    const signupInfoApi = async(click:any,img:any)=>{
+        const {name, value} = click.target;
+        console.log(name);
+        console.log(img);
+        if(name === "nick_name"){
+            if(nicknameCheck(userInfo.nick_name)){
+                const data = new FormData();
+                data.append("type","modifyinfo");
+                data.append("email",userInfo.email);
+                data.append("hash",JSON.parse(sessionStorage.getItem("user_info")!).hash);
+                data.append("profile_img",userInfo.profile_img);
+                data.append("nick_name",changeInfo.nick_name);
+                data.append("my_url",userInfo.my_url);
+                data.append("summary",userInfo.summary);
+                data.append("marketing_use",userInfo.marketing_use);
+                try{
+                  await axios(
+                    {
+                      method:"post",
+                      url:"https://proveit.cafe24.com/api2/user.php",
+                      data
+                    }
+                  ).then((e:any)=>{
+                    if(e.data.ret_code ==="0000"){
+                        setUserInfo({...userInfo,nick_name:changeInfo.nick_name});
+                        setChangeState_nickName(false);       
+                    }else{
+                      console.log(e);
+                    }
+                  })
+                }catch{
+                }
+            }else{
+                if(!nicknameCheck(userInfo.nick_name)){
+                    setNicknameState(false);
+                }
+            }
+        }else if(name === "summary"){
             const data = new FormData();
             data.append("type","modifyinfo");
-            data.append("profile_img",userInfo.profile_img);
             data.append("email",userInfo.email);
-            data.append("password",userInfo.password);
+            data.append("hash",JSON.parse(sessionStorage.getItem("user_info")!).hash);
+            data.append("profile_img",userInfo.profile_img);
             data.append("nick_name",userInfo.nick_name);
             data.append("my_url",userInfo.my_url);
-            data.append("summary",userInfo.summary);
+            data.append("summary",changeInfo.summary);
             data.append("marketing_use",userInfo.marketing_use);
             try{
-              await axios(
+                await axios(
                 {
-                  method:"post",
-                  url:"https://proveit.cafe24.com/api2/user.php",
-                  data
+                    method:"post",
+                    url:"https://proveit.cafe24.com/api2/user.php",
+                    data
                 }
-              ).then((e:any)=>{
+                ).then((e:any)=>{
                 if(e.data.ret_code ==="0000"){
-
-                    if(click.target.name ==="nick_name"){
-                        setUserInfo(changeInfo);
-                        setChangeState_nickName(false);
-                    }else if(click.target.name ==="summary"){
-                        setUserInfo(changeInfo);
-                        setChangeState_summary(false);
-                    }else{
-                        if(click.target.value==="true"){
-                            setUserInfo({...userInfo,marketing_use:true});
-                        }else{
-                            setUserInfo({...userInfo,marketing_use:false});
-                        }
-                    }
-                    
+                    setUserInfo({...userInfo,summary:changeInfo.summary});
+                    setChangeState_summary(false);            
                 }else{
-                  console.log(e);
+                    console.log(e);
                 }
-              })
+                })
             }catch{
             }
-        }else{
-            if(!nicknameCheck(userInfo.nick_name)){
-                setNicknameState(false);
+        }else if(name === "marketing_use"){
+            if(value==="true"){
+                const data = new FormData();
+                data.append("type","modifyinfo");
+                data.append("email",userInfo.email);
+                data.append("hash",JSON.parse(sessionStorage.getItem("user_info")!).hash);
+                data.append("profile_img",userInfo.profile_img);
+                data.append("nick_name",userInfo.nick_name);
+                data.append("my_url",userInfo.my_url);
+                data.append("summary",userInfo.summary);
+                data.append("marketing_use","true");
+                try{
+                    await axios(
+                    {
+                        method:"post",
+                        url:"https://proveit.cafe24.com/api2/user.php",
+                        data
+                    }
+                    ).then((e:any)=>{
+                    if(e.data.ret_code ==="0000"){
+                        setUserInfo({...userInfo,marketing_use:"true"});
+                    }else{
+                        console.log(e);
+                    }
+                    })
+                }catch{
+                }
+            }else{
+
+                const data = new FormData();
+                data.append("type","modifyinfo");
+                data.append("email",userInfo.email);
+                data.append("hash",JSON.parse(sessionStorage.getItem("user_info")!).hash);
+                data.append("profile_img",userInfo.my_url);
+                data.append("nick_name",userInfo.nick_name);
+                data.append("my_url",userInfo.my_url);
+                data.append("summary",userInfo.summary);
+                data.append("marketing_use","false");
+                try{
+                    await axios(
+                    {
+                        method:"post",
+                        url:"https://proveit.cafe24.com/api2/user.php",
+                        data
+                    }
+                    ).then((e:any)=>{
+                        console.log(e);
+                    if(e.data.ret_code ==="0000"){
+                        setUserInfo({...userInfo,marketing_use:"false"});
+                    }else{
+                        console.log(e);
+                    }
+                    })
+                }catch{
+                }
             }
+        }else if(name === "profile_img"){
+            const data = new FormData();
+                data.append("type","modifyinfo");
+                data.append("email",userInfo.email);
+                data.append("hash",JSON.parse(sessionStorage.getItem("user_info")!).hash);
+                data.append("profile_img",img);
+                data.append("nick_name",userInfo.nick_name);
+                data.append("my_url",userInfo.my_url);
+                data.append("summary",userInfo.summary);
+                data.append("marketing_use",userInfo.marketing_use);
+                try{
+                    await axios(
+                    {
+                        method:"post",
+                        url:"https://proveit.cafe24.com/api2/user.php",
+                        data
+                    }
+                    ).then((e:any)=>{
+                        console.log(e);
+                    if(e.data.ret_code ==="0000"){
+                    }else{
+                    }
+                    })
+                }catch{
+                }
         }
+        
     }
     
     const FileUploder =(e:any) =>{
         e.preventDefault();
+        console.log(e.target.n);
         let data = e.target;
         if(data.files[0].type === "image/jpeg" ||data.files[0].type ===  "image/png" ||data.files[0].type ===  "image/jpg"||data.files[0].type ===  "image/gif"){
             if (data.files) {
@@ -102,6 +204,7 @@ function UserInfo({userInfomation}:{userInfomation:any}){
                     if(fileSize <= 10000000){
                         setCurrentImg(window.URL.createObjectURL(file));
                         setUserInfo({...userInfo,profile_img:data.files[0]});
+                        signupInfoApi(e,data.files[0]);
                     }else{
                         alert("파일 크기가 너무 큽니다.");
                     }
@@ -115,9 +218,9 @@ function UserInfo({userInfomation}:{userInfomation:any}){
         e.target.value = "";
     }
     
-    const removeImg=()=>{
+    const removeImg=(e:any)=>{
         setCurrentImg("");
-        setUserInfo({...userInfo,profile_img:""});
+        signupInfoApi(e,"none_img");
     }
 
     const nicknameCheck =(str:string)=>{
@@ -156,8 +259,9 @@ function UserInfo({userInfomation}:{userInfomation:any}){
     useEffect(()=>{
         setUserInfo(userInfomation);
         setChangeInfo(userInfomation);
+        setCurrentImg(`https://newblo.co.kr${userInfomation.profile_img}`);
+        console.log(userInfomation);
     },[])
-    console.log(userInfo);
     
     return (
       <div style={{width:"100%",display:"flex",flexDirection:"column"}}>
@@ -172,11 +276,11 @@ function UserInfo({userInfomation}:{userInfomation:any}){
             <div className="profileImgBox_btnbox">
                 <div className="profileImgBox_btnbox_btnbox">
                     <form style={{display:"block"}}>
-                        <input type='file' id="thumbnailImg" style={{display:"none"}}  accept=".jpg,.jpeg,.png,.bmp" onChange={FileUploder}></input>
+                        <input type='file' id="thumbnailImg" style={{display:"none"}} name="profile_img" accept="*" onChange={FileUploder}></input>
                         <label htmlFor="thumbnailImg" className="emptyRecBtn" style={{marginRight:"8px"}}>이미지 업로드
                         </label>
                     </form>
-                    <div className="emptyRecBtn" onClick={removeImg}>삭제</div>
+                    <button className="emptyRecBtn" name="profile_img" onClick={removeImg}>삭제</button>
                 </div>
                 <div className="profileImgBox_btnbox_text">120*120px, jpg, jpeg, png, gif, 2MB 이하</div>
             </div>
@@ -228,12 +332,12 @@ function UserInfo({userInfomation}:{userInfomation:any}){
             <div className="userInputPage" style={{marginTop:"20px",marginBottom:"20px"}}>뉴스레터 수신(선택)</div>
             <div style={{display:"flex",alignItems:"center"}}>
                 <div className="marketing_box">
-                    <button className={userInfo.marketing_use?"radio_on":"radio_off"} name="marketing_use" value="true" onClick={signupInfoApi}></button>
+                    <button className={userInfo.marketing_use==="true"?"radio_on":"radio_off"} name="marketing_use" value="true" onClick={signupInfoApi}></button>
                     <div>예</div>
                 </div>
 
                 <div className="marketing_box">
-                    <button className={!userInfo.marketing_use?"radio_on":"radio_off"} name="marketing_use" value="false" onClick={signupInfoApi}></button>
+                    <button className={userInfo.marketing_use==="false"?"radio_on":"radio_off"} name="marketing_use" value="false" onClick={signupInfoApi}></button>
                     <div>아니오</div>
                 </div>
             </div>

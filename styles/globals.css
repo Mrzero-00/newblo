@@ -7,8 +7,14 @@ body {
 @font-face {
   font-family: "Noto Sans KR";
   font-weight: 400;
-  src: url("./font/NotoSansKR-Regular.otf") format("opentype");
+  src: url("./font/NotoSansKR-Light.otf") format("opentype");
 }
+
+/* @font-face {
+  font-family: "Noto Sans KR";
+  font-weight: 400;
+  src: url("./font/NotoSansKR-Regular.otf") format("opentype");
+} */
 @font-face {
   font-family: "Noto Sans KR";
   font-weight: 700;
@@ -626,12 +632,11 @@ input:focus{
 }
 
 .objBtn{
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background-color: #000;
+  width: 24px;
+  height: 24px;
   cursor: pointer;
-  margin-right: -32px;
+  background-image: url(./img/img_append_icon.svg);
+  margin-right: -24px;
   position: absolute;
 }
 
