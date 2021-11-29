@@ -164,7 +164,6 @@ function Admin(){
           }
           ).then((e:any)=>{
           if(e.data.ret_code ==="0000"){
-            console.log(e);
             sessionStorage.setItem("user_info",JSON.stringify({
               ...JSON.parse(sessionStorage.getItem("user_info")!),
               profile_img:e.data.user.profile_img,
