@@ -8,6 +8,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import axios from 'axios';
 
 
+
 function Editor(){
     const [title,setTitle] = useState<string>("");
     const [summary,setSummary] = useState<string>("");
@@ -19,8 +20,6 @@ function Editor(){
     const [prePage,setPrePage] =useState<string>("");
     const [objBtnState,setObjBtnState] = useState<boolean>(true);
     const [inputNum,setInputNum] = useState<any>(0);
-    const currentFocus = useRef();
-
 
     let textEditor:any;
     const handleChange_title=(e:any)=>{
@@ -47,7 +46,6 @@ function Editor(){
     }
 
     const handleChange_text=(e:any)=>{
-        
         const objBtnList:any =document.querySelector(".objBtnList");
         let top:number = 0;
         textEditor = document.querySelector('.ql-editor');
@@ -75,9 +73,7 @@ function Editor(){
         setText(e);
         setThumbnail(thumbnailLogic());
 
-        
         addBtnCreate.style.top = `${top-32}px`;
-        console.dir(objBtnList);
         if(objBtnList?.children.length-1 === textEditor.children.length){
             
         }else if(objBtnList?.children.length-1 >= textEditor.children.length){
@@ -85,7 +81,6 @@ function Editor(){
         }else{
             objBtnList?.appendChild(addBtnCreate);
         }
-
     }
 
     const imgSendApi = async(img:any)=>{
@@ -155,6 +150,50 @@ function Editor(){
         setText(frontContents+middleContents+backContents);
     }
 
+    const addTooltip = (div:any) =>{
+        const toolbar = div.children[0].children[0].children[2].children[2];
+        for(let i=0; i<toolbar.children.length ; i++){
+            for(let j=0;j<toolbar.children[i].children.length;j++){   
+                if(toolbar.children[i].children[j].className === "ql-header"){
+                    toolbar.children[i].children[j].setAttribute("title","부제목");
+                }else if(toolbar.children[i].children[j].className === "ql-bold"){
+                    toolbar.children[i].children[j].setAttribute("title","굵은 글씨");
+                }else if(toolbar.children[i].children[j].className === "ql-italic"){
+                    toolbar.children[i].children[j].setAttribute("title","기울인 글씨");
+                }else if(toolbar.children[i].children[j].className === "ql-underline"){
+                    toolbar.children[i].children[j].setAttribute("title","밑줄");
+                }else if(toolbar.children[i].children[j].className === "ql-strike"){
+                    toolbar.children[i].children[j].setAttribute("title","취소선");
+                }else if(toolbar.children[i].children[j].className === "ql-blockquote"){
+                    toolbar.children[i].children[j].setAttribute("title","인용글 넣기");
+                }else if(toolbar.children[i].children[j].className === "ql-code-block"){
+                    toolbar.children[i].children[j].setAttribute("title","코드 넣기");
+                }else if(toolbar.children[i].children[j].className === "ql-align"){
+                    if(toolbar.children[i].children[j].value ==="center"){
+                        toolbar.children[i].children[j].setAttribute("title","중앙 정렬");
+                    }else if(toolbar.children[i].children[j].value ==="right"){
+                        toolbar.children[i].children[j].setAttribute("title","오른쪽 정렬");
+                    }else{
+                        toolbar.children[i].children[j].setAttribute("title","왼쪽 정렬");
+                    }
+                }else if(toolbar.children[i].children[j].className === "ql-list"){
+                    if(toolbar.children[i].children[j].value ==="ordered"){
+                        toolbar.children[i].children[j].setAttribute("title","숫자 리스트");
+                    }else{
+                        toolbar.children[i].children[j].setAttribute("title","점 리스트");
+                    }
+                }else if(toolbar.children[i].children[j].className === "ql-link"){
+                    toolbar.children[i].children[j].setAttribute("title","링크 연결");
+                }else if(toolbar.children[i].children[j].className === "ql-video"){
+                    toolbar.children[i].children[j].setAttribute("title","영상 넣기");
+                }else if(toolbar.children[i].children[j].className === "ql-clean"){
+                    toolbar.children[i].children[j].setAttribute("title","서식 지우기");
+                }
+            }
+        }
+
+    }
+
 
     useEffect(()=>{
         setIsLoading(true);
@@ -166,6 +205,15 @@ function Editor(){
             alink.click();    
         }
         setPrePage(sessionStorage.getItem('pre_url')!);
+        let editorOn:any;
+        setTimeout(() => {
+            editorOn = document.querySelector(".editorText");
+        }, 0);
+        setTimeout(() => {
+            addTooltip(editorOn);
+        }, 200);
+
+
     },[])
 
     const keyDownLogic =(e:any)=>{
@@ -246,22 +294,29 @@ function Editor(){
                     onKeyDown={keyDownLogic}
                     value={text}
                     modules={{
-                        toolbar:[
+
+                        toolbar:
+                        [
                         [{'header': '2'}],
-                        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                        [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }],
+                        ['bold', 'italic', 'underline', 'strike',],
+                        [ 'blockquote','code-block'],
+                        [{ align: '' }, { align: 'center' }, { align: 'right' }],
                         [{'list': 'ordered'}, {'list': 'bullet'}],
                         ['link', 'video'],
-                        ['clean']
-                      ],  clipboard: {
+                        ['clean'],
+                        
+                        ],  
+
+                      
+                      clipboard: {
                         // toggle to add extra line breaks when pasting HTML:
                         matchVisual: false,
                       }}}
                     formats={[
                         'header', 'font', 'size',
                         'bold', 'italic', 'underline', 'strike', 'blockquote',
-                        'align','list', 'bullet',
-                        'link', 'image', 'video'
+                        'align','list', 'bullet','code-block',
+                        'link', 'image', 'video',
                       ]}
                     bounds={'.editorBox'}
                     placeholder={"내용을 입력해주세요"}
