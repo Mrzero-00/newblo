@@ -211,7 +211,7 @@ function Editor(){
         }, 0);
         setTimeout(() => {
             addTooltip(editorOn);
-        }, 200);
+        }, 300);
 
 
     },[])
