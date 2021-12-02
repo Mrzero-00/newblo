@@ -148,6 +148,51 @@ function ModifyText(){
         setText(frontContents+middleContents+backContents);
     }
 
+    
+    const addTooltip = (div:any) =>{
+        const toolbar = div.children[0].children[0].children[2].children[2];
+        for(let i=0; i<toolbar.children.length ; i++){
+            for(let j=0;j<toolbar.children[i].children.length;j++){   
+                if(toolbar.children[i].children[j].className === "ql-header"){
+                    toolbar.children[i].children[j].setAttribute("title","부제목");
+                }else if(toolbar.children[i].children[j].className === "ql-bold"){
+                    toolbar.children[i].children[j].setAttribute("title","굵은 글씨");
+                }else if(toolbar.children[i].children[j].className === "ql-italic"){
+                    toolbar.children[i].children[j].setAttribute("title","기울인 글씨");
+                }else if(toolbar.children[i].children[j].className === "ql-underline"){
+                    toolbar.children[i].children[j].setAttribute("title","밑줄");
+                }else if(toolbar.children[i].children[j].className === "ql-strike"){
+                    toolbar.children[i].children[j].setAttribute("title","취소선");
+                }else if(toolbar.children[i].children[j].className === "ql-blockquote"){
+                    toolbar.children[i].children[j].setAttribute("title","인용글 넣기");
+                }else if(toolbar.children[i].children[j].className === "ql-code-block"){
+                    toolbar.children[i].children[j].setAttribute("title","코드 넣기");
+                }else if(toolbar.children[i].children[j].className === "ql-align"){
+                    if(toolbar.children[i].children[j].value ==="center"){
+                        toolbar.children[i].children[j].setAttribute("title","중앙 정렬");
+                    }else if(toolbar.children[i].children[j].value ==="right"){
+                        toolbar.children[i].children[j].setAttribute("title","오른쪽 정렬");
+                    }else{
+                        toolbar.children[i].children[j].setAttribute("title","왼쪽 정렬");
+                    }
+                }else if(toolbar.children[i].children[j].className === "ql-list"){
+                    if(toolbar.children[i].children[j].value ==="ordered"){
+                        toolbar.children[i].children[j].setAttribute("title","숫자 리스트");
+                    }else{
+                        toolbar.children[i].children[j].setAttribute("title","점 리스트");
+                    }
+                }else if(toolbar.children[i].children[j].className === "ql-link"){
+                    toolbar.children[i].children[j].setAttribute("title","링크 연결");
+                }else if(toolbar.children[i].children[j].className === "ql-video"){
+                    toolbar.children[i].children[j].setAttribute("title","영상 넣기");
+                }else if(toolbar.children[i].children[j].className === "ql-clean"){
+                    toolbar.children[i].children[j].setAttribute("title","서식 지우기");
+                }
+            }
+        }
+
+    }
+
 
     useEffect(()=>{
         getTextApi();
@@ -159,6 +204,14 @@ function ModifyText(){
             alink.click();    
         }
         setPrePage(sessionStorage.getItem('pre_url')!);
+
+        let editorOn:any;
+        setTimeout(() => {
+            editorOn = document.querySelector(".editorText");
+        }, 0);
+        setTimeout(() => {
+            addTooltip(editorOn);
+        }, 600);
     },[])
 
     useEffect(()=>{
@@ -173,6 +226,8 @@ function ModifyText(){
                 setObjBtnState(false);
             }
         }
+
+        
     },[text])
 
     const writeSendApi = async()=>{
@@ -257,24 +312,26 @@ function ModifyText(){
                     
                     value={text}
                     modules={{
-                        toolbar:[
+                        toolbar:
+                        [
                         [{'header': '2'}],
-                        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                        [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }],
-                        [{'list': 'ordered'}, {'list': 'bullet'}, 
-                         {'indent': '-1'}, {'indent': '+1'}],
+                        ['bold', 'italic', 'underline', 'strike',],
+                        [ 'blockquote','code-block'],
+                        [{ align: '' }, { align: 'center' }, { align: 'right' }],
+                        [{'list': 'ordered'}, {'list': 'bullet'}],
                         ['link', 'video'],
-                        ['clean']
-                      ],  clipboard: {
+                        ['clean'],
+                        
+                        ],  
+                      clipboard: {
                         // toggle to add extra line breaks when pasting HTML:
                         matchVisual: false,
                       }}}
                     formats={[
                         'header', 'font', 'size',
                         'bold', 'italic', 'underline', 'strike', 'blockquote',
-                        'align',
-                        'list', 'bullet', 'indent',
-                        'link', 'image', 'video'
+                        'align','list', 'bullet','code-block',
+                        'link', 'image', 'video',
                       ]}
                     bounds={'.editorBox'}
                     placeholder={"내용을 입력해주세요"}
