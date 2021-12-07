@@ -2,16 +2,18 @@
   "name": "newblo",
   "private": true,
   "scripts": {
-    "dev":"export HTTPS=true set PORT=443  SSL_CRT_FILE=/etc/letsencrypt/live/newblo.co.kr/cert.pem SSL_KEY_FILE=/etc/letsencrypt/live/newblo.co.kr/privkey.pem&& next dev",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "netlify-deploy": "next build && next export"
   },
   "cacheDirectories": [
     "node_modules/",
     ".next/cache/"
   ],
   "dependencies": {
+    "@editorjs/editorjs": "^2.22.2",
     "axios": "^0.24.0",
     "medium-editor": "^5.23.3",
     "next": "12.0.3",

@@ -8,13 +8,11 @@ let EditorJs = createReactEditorJS();
 function EditorjsComponents({text,setText}){
   const instanceRef = useRef({
     save : ()=>{
-      console.log("초기");
     }
   });
   
   async function handleSave() {
     let savedData;
-    console.dir(instanceRef.current);
     if(instanceRef!==null){
       savedData = await instanceRef.current.save();
       setText(savedData);

@@ -1,12 +1,10 @@
 import * as React from 'react';
 import { useState,useEffect } from 'react';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import UserMainHeader from '../../components/common/UserMainHeader';
 import dynamic from 'next/dynamic';
 import HeadInfo from '../../components/common/HeadInfo';
 import axios from 'axios';
-const ReactQuill = dynamic(()=>import("react-quill"),{ssr:false});
 const ReadText = dynamic(()=>import("../../components/editor/ReadingEditor"),{ssr:false});
 
 function About(){
@@ -89,7 +87,7 @@ function About(){
         }, 3000);
         writgetApi();
       },[]);
-     console.log(textInfo);
+
     return (
       <>
       {renderState&&<div style={{display:"flex",flexDirection:"column",alignItems:"center",width:"100%"}}>
@@ -124,8 +122,6 @@ function About(){
             </div>}
           </div>
         </div>
-        <ReactQuill className="textPageContents_mainText" readOnly value={textInfo.maintext}></ReactQuill>
-        
         <ReadText text={textInfo.maintext}></ReadText>
         <Link href={`/${textInfo.my_url}`}>
           <a className="textPageContents_footer">
