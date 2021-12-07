@@ -3,13 +3,18 @@ import { useEffect, useState, useRef } from 'react';
 import { createReactEditorJS } from 'react-editor-js';
 import {EDITOR_JS_TOOLS} from './edtiorJsTools';
 
-const EditorJs = createReactEditorJS();
+let EditorJs = createReactEditorJS();
 
 function EditorjsComponents({text,setText}){
-  const instanceRef = useRef(null);
+  const instanceRef = useRef({
+    save : ()=>{
+      console.log("초기");
+    }
+  });
   
   async function handleSave() {
     let savedData;
+    console.dir(instanceRef.current);
     if(instanceRef!==null){
       savedData = await instanceRef.current.save();
       setText(savedData);
@@ -21,7 +26,7 @@ function EditorjsComponents({text,setText}){
   }, [])
 
     return(
-        <div style={{width:"100%",marginLeft:"-34px"}}>
+        <div style={{width:"100%"}}>
             <EditorJs
               onChange={handleSave}
               onInitialize={handleInitialize}

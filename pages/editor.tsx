@@ -81,7 +81,6 @@ function Editor(){
                 data
             }
             ).then((e)=>{
-                console.log(e);
             if(e.data.ret_code ==="0000"){
                 window.location.replace(`/${JSON.parse(sessionStorage.getItem("user_info")!).my_url}/${e.data.ret_data}`);
                 const alink = document.createElement("a");
@@ -93,7 +92,6 @@ function Editor(){
         }catch{
         }
     }
-    console.log(thumbnail);
     return(
         <div>
             <div style={{width:"100%",height:"72px",marginBottom:"8px",display:"flex",justifyContent:"space-between",padding:"0px 48px",alignItems:"center"}}>
