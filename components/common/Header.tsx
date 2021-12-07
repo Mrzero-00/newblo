@@ -58,7 +58,7 @@ function Header(){
                             <a className="emptyBtn">새 글쓰기</a>
                         </Link>
                         }
-                        {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://newblo.co.kr${userState.profile_img}")`}} onClick={()=>{setModalState(!modalState)}}></div>}
+                        {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://proveit.cafe24.com${userState.profile_img}")`}} onClick={()=>{setModalState(!modalState)}}></div>}
                     </div>
                 </div>
             </div>

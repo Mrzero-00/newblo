@@ -4,13 +4,10 @@ import {EDITOR_JS_TOOLS} from './edtiorJsTools';
 
 const EditorJs = createReactEditorJS();
 
-function EditorjsComponents({text,setText}){
+function ReadingEditor({text}){
   const instanceRef = React.useRef(null);
   
-  async function handleSave() {
-    const savedData = await instanceRef.current.save();
-    setText(savedData);
-  }
+
 
   const handleInitialize = React.useCallback((instance) => {
     instanceRef.current = instance
@@ -18,11 +15,9 @@ function EditorjsComponents({text,setText}){
 
 
     return(
-        <div style={{width:"100%",marginLeft:"-34px"}}>
+        <div style={{width:"100%"}}>
             <EditorJs
-              onChange={handleSave}
-              onInitialize={handleInitialize}
-              instanceRef={(instance:any) => (instanceRef.current = instance)}
+              readOnly={true}
               data={text}
               tools={EDITOR_JS_TOOLS}
           />
@@ -30,5 +25,5 @@ function EditorjsComponents({text,setText}){
     )
 }
 
-export default EditorjsComponents;
+export default ReadingEditor;
 

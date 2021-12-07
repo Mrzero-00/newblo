@@ -42,7 +42,7 @@ function About(props:any){
       await axios(
         {
           method:"post",
-          url:"https://newblo.co.kr/api2/blog.php",
+          url:"https://proveit.cafe24.com/api2/blog.php",
           data
         }
       ).then((e)=>{

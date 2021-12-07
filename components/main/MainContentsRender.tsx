@@ -19,7 +19,7 @@ type Props = {
 };
 
 function MainContentsRender(item:any){
-    console.log(item.cell,":",item.index%2);
+    console.log(item);
     return(
         <a style={{
             width:"100%",
@@ -29,7 +29,7 @@ function MainContentsRender(item:any){
             maxWidth:"780px",
             marginLeft:(item.cell==="cell_1"&&item.renderType===2)&&"auto",
             zIndex:999,
-            // height: "264px",
+            height: "264px",
             padding:"32px 20px 32px 20px",
             }}>
             {item.index%2===0&&<div style={{backgroundColor:"#EDE9DC",width:"100%",height:"264px",position:"absolute",transform:"translate(0px,-32px)",left:"0px",zIndex:-1}}></div>}
@@ -57,7 +57,7 @@ function MainContentsRender(item:any){
                     style={{
                         paddingBottom:"24px",
                         }}>
-                    <div className="mainItemUserProfile" style={{backgroundImage:`url("https://newblo.co.kr${item.item.profile_img}")`}}></div>
+                    <div className="mainItemUserProfile" style={{backgroundImage:`url("https://proveit.cafe24.com${item.item.profile_img}")`}}></div>
                     <div className="mainItemUserName">{item.item.nick_name}</div>
                 </a>
                 </Link>

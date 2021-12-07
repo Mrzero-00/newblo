@@ -135,7 +135,7 @@ function Admin(){
         await axios(
           {
             method:"post",
-            url:"https://newblo.co.kr/api2/blog.php",
+            url:"https://proveit.cafe24.com/api2/blog.php",
             data
           }
         ).then((e)=>{
@@ -159,7 +159,7 @@ function Admin(){
           await axios(
           {
               method:"post",
-              url:"https://newblo.co.kr/api2/user.php",
+              url:"https://proveit.cafe24.com/api2/user.php",
               data
           }
           ).then((e:any)=>{

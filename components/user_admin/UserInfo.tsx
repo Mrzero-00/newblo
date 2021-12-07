@@ -271,7 +271,7 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
     useEffect(()=>{
         setUserInfo(userInfomation);
         setChangeInfo(userInfomation);
-        setCurrentImg(`https://newblo.co.kr${userInfomation.profile_img}`);
+        setCurrentImg(`https://proveit.cafe24.com${userInfomation.profile_img}`);
         console.log(userInfomation);
     },[])
     

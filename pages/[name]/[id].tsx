@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import HeadInfo from '../../components/common/HeadInfo';
 import axios from 'axios';
 const ReactQuill = dynamic(()=>import("react-quill"),{ssr:false});
-
+const ReadText = dynamic(()=>import("../../components/editor/ReadingEditor"),{ssr:false});
 
 function About(){
     const [renderState,setRenderState] = useState<boolean>(false);
@@ -35,7 +35,7 @@ function About(){
           await axios(
           {
               method:"post",
-              url:"https://newblo.co.kr/api2/blog.php",
+              url:"https://proveit.cafe24.com/api2/blog.php",
               data
           }
           ).then((e)=>{
@@ -43,7 +43,8 @@ function About(){
             if(e.data.blog ===null){
 
             }else{
-              setTextInfo(e.data.blog);
+              console.log(e.data.blog);
+              setTextInfo({...e.data.blog,maintext:JSON.parse(e.data.blog.maintext)});
               setRenderState(true);
             }
           }else{
@@ -63,7 +64,7 @@ function About(){
           await axios(
           {
               method:"post",
-              url:"https://newblo.co.kr/api2/blog.php",
+              url:"https://proveit.cafe24.com/api2/blog.php",
               data
           }
           ).then((e)=>{
@@ -88,7 +89,7 @@ function About(){
         }, 3000);
         writgetApi();
       },[]);
-     
+     console.log(textInfo);
     return (
       <>
       {renderState&&<div style={{display:"flex",flexDirection:"column",alignItems:"center",width:"100%"}}>
@@ -99,7 +100,7 @@ function About(){
           <p className="textPageContents_summary">{textInfo.summary}</p>
           <div className="textPageContents_writerInfoBox">
             <Link href={`/${textInfo.my_url}`}>
-              <a className="textPageContents_writerInfoBox_profile" style={{backgroundImage:`url("https://www.newblo.co.kr${textInfo.profile_img}")`}}></a>
+              <a className="textPageContents_writerInfoBox_profile" style={{backgroundImage:`url("https://proveit.cafe24.com${textInfo.profile_img}")`}}></a>
             </Link>
             <Link href={`/${textInfo.my_url}`}>
               <a className="textPageContents_writerInfoBox_writer">{textInfo.nick_name}</a>
@@ -124,9 +125,11 @@ function About(){
           </div>
         </div>
         <ReactQuill className="textPageContents_mainText" readOnly value={textInfo.maintext}></ReactQuill>
+        
+        <ReadText text={textInfo.maintext}></ReadText>
         <Link href={`/${textInfo.my_url}`}>
           <a className="textPageContents_footer">
-            <div className="textPageContents_footer_profileImg" style={{backgroundImage:`url("https://www.newblo.co.kr${textInfo.profile_img}")`}}></div>
+            <div className="textPageContents_footer_profileImg" style={{backgroundImage:`url("https://proveit.cafe24.com${textInfo.profile_img}")`}}></div>
             <div className="textPageContents_footer_writerInfo">
               <div className="textPageContents_footer_writerInfo_nickName">{textInfo.nick_name}</div>
               <div className="textPageContents_footer_writerInfo_summary">{textInfo.user_summary}</div>

@@ -159,8 +159,7 @@ const Home: NextPage = () => {
         await axios(
           {
             method:"post",
-            url:"https://proveit.cafe24.com/blog.php",
-            // url:"https://newblo.co.kr/api2/blog.php",
+            url:"https://proveit.cafe24.com/api2/blog.php",
             data
           }
         ).then((e)=>{
@@ -192,7 +191,7 @@ const Home: NextPage = () => {
           <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:cell===2?"flex-end":"center",position:"relative"}}>
             {cell_1.map((item:any,index:any)=>(<MainContentsRender item={item} cell={"cell_1"} renderType={cell}  index={index} key={item.id}/>))}
           </div>
-            {cell>=2&&<div style={{width:"100%",display:"flex",flexDirection:"column",position:"relative"}}>
+            {cell===2&&<div style={{width:"100%",display:"flex",flexDirection:"column",position:"relative"}}>
             {cell_2.map((item:any,index:any)=>(<MainContentsRender item={item} cell={"cell_2"} renderType={cell} index={index} key={item.id}/>))}
             </div>}
         </div>

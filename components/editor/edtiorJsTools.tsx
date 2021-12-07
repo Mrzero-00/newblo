@@ -17,27 +17,30 @@ import Header from '@editorjs/header'
 import ImageTool from '@editorjs/image';
 import axios from "axios";
 
+
 const imgSendApi = async(img:any)=>{
   const data = new FormData();
   data.append("img",img);
   data.append("email",JSON.parse(sessionStorage.getItem("user_info")!).email);
   data.append("hash",JSON.parse(sessionStorage.getItem("user_info")!).hash);
   data.append("type","imgUpload");
+  let ImgData:string="dd";
   try{
       await axios(
       {
           method:"post",
-          url:"https://newblo.co.kr/api2/blog.php",
+          url:"https://proveit.cafe24.com/api2/blog.php",
           data
       }
       ).then((e)=>{
-          console.log(e);
-      if(e.data.ret_code ==="0000"){
-      }else{
-      }
+        if(e.data.ret_code ==="0000"){
+          ImgData = e.data.img;
+        }else{  
+        }
       })
   }catch{
   }
+  return ImgData;
 }
 
 export const EDITOR_JS_TOOLS = {
@@ -46,32 +49,36 @@ export const EDITOR_JS_TOOLS = {
   list: List,
   warning: Warning,
   linkTool: LinkTool,
-  image:{
+  image: {
     class: ImageTool,
     config: {
+      /**
+       * Custom uploader
+       */
       uploader: {
-        uploadByFile(file:any){
+        /**
+         * Upload file to the server and return an uploaded image data
+         * @param {File} file - file selected from the device or pasted by drag-n-drop
+         * @return {Promise.<{success, file: {url}}>}
+         */
+        uploadByFile(file){
           // your own uploading logic here
-          return MyAjax.upload(file).then(() => {
+          return imgSendApi(file).then((e) => {
             return {
               success: 1,
               file: {
-                url: 'https://codex.so/upload/redactor_images/o_e48549d1855c7fc1807308dd14990126.jpg',
+                url: `https://proveit.cafe24.com${e}`,
+                // any other image data you want to store, such as width, height, color, extension, etc
               }
             };
           });
         },
-        uploadByUrl(url:any){
-          // your ajax request for uploading
-          return MyAjax.upload(file).then(() => {
-            return {
-              success: 1,
-              file: {
-                url: 'https://codex.so/upload/redactor_images/o_e48549d1855c7fc1807308dd14990126.jpg',
-              }
-            }
-          })
-        }
+
+        /**
+         * Send URL-string to the server. Backend should load image by this URL and return an uploaded image data
+         * @param {string} url - pasted image URL
+         * @return {Promise.<{success, file: {url}}>}
+         */
       }
     }
   },
