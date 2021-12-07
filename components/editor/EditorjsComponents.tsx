@@ -1,21 +1,24 @@
 import * as React from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { createReactEditorJS } from 'react-editor-js';
 import {EDITOR_JS_TOOLS} from './edtiorJsTools';
 
 const EditorJs = createReactEditorJS();
 
 function EditorjsComponents({text,setText}){
-  const instanceRef = React.useRef(null);
+  const instanceRef = useRef(null);
   
   async function handleSave() {
-    const savedData = await instanceRef.current.save();
-    setText(savedData);
+    let savedData;
+    if(instanceRef!==null){
+      savedData = await instanceRef.current.save();
+      setText(savedData);
+    }
   }
 
   const handleInitialize = React.useCallback((instance) => {
-    instanceRef.current = instance
+    instanceRef.current = instance;
   }, [])
-
 
     return(
         <div style={{width:"100%",marginLeft:"-34px"}}>
