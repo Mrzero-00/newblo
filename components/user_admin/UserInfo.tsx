@@ -331,12 +331,12 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
             <div className="userInputPage" style={{marginTop:"20px",marginBottom:"20px"}}>뉴스레터 수신(선택)</div>
             <div style={{display:"flex",alignItems:"center"}}>
                 <div className="marketing_box">
-                    <button className={userInfo.marketing_use==="true"?"radio_on":"radio_off"} name="marketing_use" value="true" onClick={signupInfoApi}></button>
+                    <button className={userInfo.marketing_use==="true"?"radio_on":"radio_off"} name="marketing_use" value="true" onClick={(e)=>{signupInfoApi(e,null)}}></button>
                     <div>예</div>
                 </div>
 
                 <div className="marketing_box">
-                    <button className={userInfo.marketing_use==="false"?"radio_on":"radio_off"} name="marketing_use" value="false" onClick={signupInfoApi}></button>
+                    <button className={userInfo.marketing_use==="false"?"radio_on":"radio_off"} name="marketing_use" value="false" onClick={(e)=>{signupInfoApi(e,null)}}></button>
                     <div>아니오</div>
                 </div>
             </div>
