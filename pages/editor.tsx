@@ -33,14 +33,16 @@ function Editor(){
     }
 
     const thumbnailLogic = ()=>{
-        const editorBox = document.querySelector(".codex-editor__redactor");
-        for(let i=0 ; i<editorBox?.children.length; i++){
-            if(editorBox?.children[i].children[0].children[0].classList[0]==="cdx-block"){
-                if(editorBox?.children[i].children[0].children[0].children[0].classList[0]==="image-tool__image"){
-                    if(editorBox?.children[i].children[0].children[0].children[0].children[1]){
-                        return editorBox?.children[i].children[0].children[0].children[0].children[1].currentSrc;
+        const editorBox = document.querySelector(".codex-editor__redactor")!;
+        if(editorBox!==undefined){
+            for(let i=0 ; i<editorBox?.children.length; i++){
+                if(editorBox?.children[i].children[0].children[0].classList[0]==="cdx-block"){
+                    if(editorBox?.children[i].children[0].children[0].children[0].classList[0]==="image-tool__image"){
+                        if(editorBox?.children[i].children[0].children[0].children[0].children[1]){
+                            return editorBox?.children[i].children[0].children[0].children[0].children[1].currentSrc;
+                        }
+                       // setThumbnail()
                     }
-                   // setThumbnail()
                 }
             }
         }
