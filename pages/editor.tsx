@@ -14,7 +14,7 @@ function Editor(){
     const [title,setTitle] = useState<string>("");
     const [summary,setSummary] = useState<string>("");
     const [text,setText] = useState<string>("");
-    const [thumbnail,setThumbnail] = useState<string>("");
+    const [thumbnail,setThumbnail] = useState<any>("");
     const [isLoading,setIsLoading] = useState<boolean>(false);
     const [titleEnter,setTitleEnter] =useState<boolean>(false);
     const [summaryEnter,setSummaryEnter] =useState<boolean>(false);
@@ -33,20 +33,19 @@ function Editor(){
     }
 
     const thumbnailLogic = ()=>{
-        const editorBox = document.querySelector(".codex-editor__redactor")!;
-        if(editorBox!==undefined){
+        const editorBox = document.querySelector(".codex-editor__redactor") as HTMLInputElement;
             for(let i=0 ; i<editorBox?.children.length; i++){
                 if(editorBox?.children[i].children[0].children[0].classList[0]==="cdx-block"){
                     if(editorBox?.children[i].children[0].children[0].children[0].classList[0]==="image-tool__image"){
                         if(editorBox?.children[i].children[0].children[0].children[0].children[1]){
-                            return editorBox?.children[i].children[0].children[0].children[0].children[1].currentSrc;
+                            return (editorBox?.children[i].children[0].children[0].children[0].children[1] as HTMLInputElement).src;
                         }
-                       // setThumbnail()
                     }
                 }
             }
-        }
     }
+
+
 
     useEffect(()=>{
         setIsLoading(true);

@@ -19,7 +19,6 @@ type Props = {
 };
 
 function MainContentsRender(item:any){
-    console.log(item);
     return(
         <a style={{
             width:"100%",
