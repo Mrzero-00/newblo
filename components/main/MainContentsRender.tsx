@@ -28,7 +28,7 @@ function MainContentsRender(item:any){
             flexDirection:"row-reverse",
             maxWidth:"780px",
             marginLeft:(item.cell==="cell_1"&&item.renderType===2)?"auto":"0px",
-            zIndex:999,
+            zIndex:9,
             height: "264px",
             padding:"32px 20px 32px 20px",
             }}>

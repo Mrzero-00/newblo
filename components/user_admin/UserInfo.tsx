@@ -44,11 +44,7 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
 
     const signupInfoApi = async(click:any,img:any)=>{
         const {name, value} = click.target;
-<<<<<<< HEAD
-        console.log(name);
-        console.log(img);
-=======
->>>>>>> 57466ed0345d0d82dd61e4fa3ccd1472a11121dd
+
         if(name === "nick_name"){
             if(nicknameCheck(userInfo.nick_name)){
                 const data = new FormData();
@@ -183,29 +179,20 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
                         data
                     }
                     ).then((e:any)=>{
-<<<<<<< HEAD
                         console.log(e);
-                    if(e.data.ret_code ==="0000"){
-=======
+
                     if(e.data.ret_code ==="0000"){
 
->>>>>>> 57466ed0345d0d82dd61e4fa3ccd1472a11121dd
                     }else{
                     }
                     })
                 }catch{
-                }
+                }   
         }
-<<<<<<< HEAD
-=======
-        userInfoApi();
->>>>>>> 57466ed0345d0d82dd61e4fa3ccd1472a11121dd
-        
     }
     
     const FileUploder =(e:any) =>{
         e.preventDefault();
-        console.log(e.target.n);
         let data = e.target;
         if(data.files[0].type === "image/jpeg" ||data.files[0].type ===  "image/png" ||data.files[0].type ===  "image/jpg"||data.files[0].type ===  "image/gif"){
             if (data.files) {
@@ -271,7 +258,7 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
     useEffect(()=>{
         setUserInfo(userInfomation);
         setChangeInfo(userInfomation);
-        setCurrentImg(`https://proveit.cafe24.com${userInfomation.profile_img}`);
+        setCurrentImg(`https://newblo.co.kr${userInfomation.profile_img}`);
         console.log(userInfomation);
     },[])
     
@@ -344,20 +331,12 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
             <div className="userInputPage" style={{marginTop:"20px",marginBottom:"20px"}}>뉴스레터 수신(선택)</div>
             <div style={{display:"flex",alignItems:"center"}}>
                 <div className="marketing_box">
-<<<<<<< HEAD
                     <button className={userInfo.marketing_use==="true"?"radio_on":"radio_off"} name="marketing_use" value="true" onClick={signupInfoApi}></button>
-=======
-                    <button className={userInfo.marketing_use==="true"?"radio_on":"radio_off"} name="marketing_use" value="true" onClick={(e:any)=>{signupInfoApi(e,null)}}></button>
->>>>>>> 57466ed0345d0d82dd61e4fa3ccd1472a11121dd
                     <div>예</div>
                 </div>
 
                 <div className="marketing_box">
-<<<<<<< HEAD
                     <button className={userInfo.marketing_use==="false"?"radio_on":"radio_off"} name="marketing_use" value="false" onClick={signupInfoApi}></button>
-=======
-                    <button className={userInfo.marketing_use==="false"?"radio_on":"radio_off"} name="marketing_use" value="false" onClick={(e:any)=>{signupInfoApi(e,null)}}></button>
->>>>>>> 57466ed0345d0d82dd61e4fa3ccd1472a11121dd
                     <div>아니오</div>
                 </div>
             </div>

@@ -34,9 +34,17 @@ function Header(){
             setUserState(JSON.parse(sessionStorage.getItem("user_info")!));
         }
     },[])
+
+    window.addEventListener("click",(e:any)=>{
+        if(e.target.classList[0]==="headerMyProfile"){
+            setModalState(!modalState);
+        }else{
+            setModalState(false);
+        }
+    })
     return(
         <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
-            <div style={{width:"100%",maxWidth:"1560px",display:"flex",justifyContent:"space-between",alignItems:"center",height:"64px",padding:"0px 20px"}}>
+            <div style={{width:"100%",maxWidth:"1560px",display:"flex",justifyContent:"space-between",alignItems:"center",height:"64px",padding:"0px 20px",position:"relative"}}>
                 <div className="logoBox">
                     <Link href="/">
                         <a style={{display:"flex",alignItems:"center"}}>
@@ -58,29 +66,29 @@ function Header(){
                             <a className="emptyBtn">새 글쓰기</a>
                         </Link>
                         }
-                        {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://proveit.cafe24.com${userState.profile_img}")`}} onClick={()=>{setModalState(!modalState)}}></div>}
+                        {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://proveit.cafe24.com${userState.profile_img}")`}}></div>}
                     </div>
                 </div>
+                {modalState&&<div className="modalWindow">
+                    <Link href={`/${userState.my_url}`}>
+                    <a className="modalList">
+                        <div className="modalListIcon modalIcon_myblog"></div>
+                        <div>내 블로그</div>
+                    </a>
+                    </Link>
+                    <Link href={`/${userState.my_url}/admin`}>
+                    <a className="modalList">
+                        <div className="modalListIcon modalIcon_setting"></div>
+                        <div>관리자</div>
+                    </a>
+                    </Link>
+                    <div className="modalList" onClick={logoutLogic}>
+                        <div className="modalListIcon modalIcon_logout"></div>
+                        <div>로그아웃</div>
+                    </div>
+                </div>}
             </div>
 
-            {modalState&&<div className="modalWindow">
-                <Link href={`/${userState.my_url}`}>
-                <a className="modalList">
-                    <div className="modalListIcon modalIcon_myblog"></div>
-                    <div>내 블로그</div>
-                </a>
-                </Link>
-                <Link href={`/${userState.my_url}/admin`}>
-                <a className="modalList">
-                    <div className="modalListIcon modalIcon_setting"></div>
-                    <div>관리자</div>
-                </a>
-                </Link>
-                <div className="modalList" onClick={logoutLogic}>
-                    <div className="modalListIcon modalIcon_logout"></div>
-                    <div>로그아웃</div>
-                </div>
-            </div>}
         </div>
     )
 }

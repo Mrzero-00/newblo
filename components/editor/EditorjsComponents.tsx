@@ -32,6 +32,7 @@ function EditorjsComponents({text,setText}){
               onInitialize={handleInitialize}
               instanceRef={(instance:any) => (instanceRef.current = instance)}
               data={text}
+              placeholder={"내용을 입력하세요"}
               tools={EDITOR_JS_TOOLS}
           />
         </div>

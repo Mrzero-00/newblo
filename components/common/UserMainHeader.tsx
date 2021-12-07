@@ -42,6 +42,15 @@ function UserMainHeader(props:any){
         setUserState(JSON.parse(sessionStorage.getItem("user_info")!) as objectDefalut);
         setRenderState(true);
     },[])
+
+    window.addEventListener("click",(e:any)=>{
+        if(e.target.classList[0]==="headerMyProfile"){
+            setModalState(!modalState);
+        }else{
+            setModalState(false);
+        }
+    })
+
     return(
         <>
            {renderState&&<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"16px 48px",height:"72px",width:"100%"}}>
@@ -64,7 +73,7 @@ function UserMainHeader(props:any){
                             <a className="greenBtn">새 글쓰기</a>
                         </Link>
                         }
-                        {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://proveit.cafe24.com${userState.profile_img}")`}} onClick={()=>{setModalState(!modalState)}}></div>}
+                        {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://proveit.cafe24.com${userState.profile_img}")`}}></div>}
                         <Link href="/">
                             <a className="mainLogo" style={{marginLeft:"20px"}}></a>
                         </Link>

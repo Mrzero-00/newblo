@@ -256,8 +256,8 @@ input:focus{
 
 .modalWindow{
   position:absolute;
-  right:48px;
-  top:72px;
+  right:16px;
+  top:56px;
   padding: 9px 0px;
   width: 160px;
   background-color: #fff;
