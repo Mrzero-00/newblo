@@ -8,6 +8,11 @@
     "lint": "next lint",
     "netlify-deploy": "next build && next export"
   },
+
+  "cacheDirectories": [
+    "node_modules/",
+    ".next/cache/"
+  ],
   "dependencies": {
     "axios": "^0.24.0",
     "medium-editor": "^5.23.3",
