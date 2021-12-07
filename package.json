@@ -14,6 +14,7 @@
   ],
   "dependencies": {
     "@editorjs/editorjs": "^2.22.2",
+    "@editorjs/paragraph": "^2.8.0",
     "axios": "^0.24.0",
     "medium-editor": "^5.23.3",
     "next": "12.0.3",

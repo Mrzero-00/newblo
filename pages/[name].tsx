@@ -81,7 +81,7 @@ const userInfoGetApi = async()=>{
 useEffect(() => {
   userInfoGetApi();
 }, []); 
-console.log(userPageState);
+//console.log(userPageState);
 
       
       return (

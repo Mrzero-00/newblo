@@ -12,7 +12,6 @@ import Table from "@editorjs/table";
 import Warning from "@editorjs/warning";
 import Header from '@editorjs/header'
 import ImageTool from '@editorjs/image';
-import Paragraph from '@editorjs/paragraph';
 import axios from "axios";
 
 
