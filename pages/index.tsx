@@ -12,15 +12,71 @@ const Home: NextPage = () => {
     {
       id:0,
       title:"컴공으로 유학가기 좋은 곳(TOP 10)",
+      thumbnail:"dasda",
+      summary:"6번 요약글",
+      ago_time:"1시간 전",
+      profile_img:"dsd",
+      nick_name:"유저 닉네임",
+      my_url:"3333333",
+    },
+    {
+      id:1,
+      title:"컴공으로 유학가기 좋은 곳(TOP 10)",
+      thumbnail:"dasdas",
+      summary:"6번 요약글",
+      ago_time:"1시간 전",
+      profile_img:"",
+      nick_name:"유저 닉네임",
+      my_url:"3333333",
+    },
+    {
+      id:2,
+      title:"컴공으로 유학가기 좋은 곳(TOP 10)",
+      thumbnail:"",
+      summary:"6번 요약글",
+      ago_time:"1시간 전",
+      profile_img:"dsd",
+      nick_name:"유저 닉네임",
+      my_url:"3333333",
+    },    {
+      id:3,
+      title:"컴공으로 유학가기 좋은 곳(TOP 10)",
       thumbnail:"",
       summary:"6번 요약글",
       ago_time:"1시간 전",
       profile_img:"",
       nick_name:"유저 닉네임",
       my_url:"3333333",
-      // comments:0,
-      // blog_name:"첫번째 블로그",
-      // link_url:""
+    }
+    ,    {
+      id:4,
+      title:"컴공으로 유학가기 좋은 곳(TOP 10)",
+      thumbnail:"dasda",
+      summary:"6번 요약글",
+      ago_time:"1시간 전",
+      profile_img:"dsds",
+      nick_name:"유저 닉네임",
+      my_url:"3333333",
+    }
+    ,    {
+      id:5,
+      title:"컴공으로 유학가기 좋은 곳(TOP 10)",
+      thumbnail:"",
+      summary:"6번 요약글",
+      ago_time:"1시간 전",
+      profile_img:"",
+      nick_name:"유저 닉네임",
+      my_url:"3333333",
+    }
+    ,    {
+      id:6,
+      title:"컴공으로 유학가기 좋은 곳(TOP 10)",
+      thumbnail:"dasdas",
+      summary:"6번 요약글",
+      ago_time:"1시간 전",
+      profile_img:"",
+      nick_name:"유저 닉네임",
+      my_url:"3333333",
     }
   ]);
 
@@ -30,7 +86,6 @@ const Home: NextPage = () => {
 
   let cell_1:object[]=[];
   let cell_2:object[]=[];
-  let cell_3:object[]=[];
 
 
   function useWindowSize() {
@@ -64,11 +119,9 @@ const Home: NextPage = () => {
   }
 
   function cellCount(){
-    if(size.width>=1160){
-      cell=3;
-    }else if(size.width>=760){
+    if(size.width>1024){
       cell=2;
-    }else{
+    }else if(size.width>=1024){
       cell=1;
     }
     
@@ -94,24 +147,6 @@ const Home: NextPage = () => {
         }
         
       }
-    }else if(cell===3){
-
-      let flag:1|2|3 = 1;
-
-      for(let i = 0 ; i<defaultArray.length ; i++){
-
-        if(flag===1){
-          cell_1.push(defaultArray[i]);
-          flag=2;
-        }else if(flag===2){
-          cell_2.push(defaultArray[i]);
-          flag=3;
-        }else{
-          cell_3.push(defaultArray[i]);
-          flag=1;
-        }
-        
-      }
     }
   }
 
@@ -124,7 +159,8 @@ const Home: NextPage = () => {
         await axios(
           {
             method:"post",
-            url:"https://newblo.co.kr/api2/blog.php",
+            url:"https://proveit.cafe24.com/blog.php",
+            // url:"https://newblo.co.kr/api2/blog.php",
             data
           }
         ).then((e)=>{
@@ -140,6 +176,7 @@ const Home: NextPage = () => {
 
   useEffect(()=>{
     listGetApi();
+    //setRenderState(true);
   },[])
   
 
@@ -151,15 +188,12 @@ const Home: NextPage = () => {
       <HeadInfo pageType="defalut" pagetitle="뉴블로 | 뉴블로" pagedescription="뉴블로 설명글"></HeadInfo>
       <Header></Header>
       <div style={{display:"flex",justifyContent:"center"}}>
-        <div style={{display:"flex",maxWidth:"1160px",justifyContent:"space-between"}}>
-          <div>
-            {cell_1.map((item:any)=>(<MainContentsRender item={item} key={item.id}/>))}
+        <div style={{display:"flex",width:"100%",justifyContent:"center"}}>
+          <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:cell===2?"flex-end":"center",position:"relative"}}>
+            {cell_1.map((item:any,index:any)=>(<MainContentsRender item={item} cell={"cell_1"} renderType={cell}  index={index} key={item.id}/>))}
           </div>
-            {cell>=2&&<div style={{marginLeft:"40px"}}>
-            {cell_2.map((item:any)=>(<MainContentsRender item={item} key={item.id}/>))}
-            </div>}
-            {cell>=3&&<div style={{marginLeft:"40px"}}>
-              {cell_3.map((item:any)=>(<MainContentsRender item={item} key={item.id}/>))}
+            {cell>=2&&<div style={{width:"100%",display:"flex",flexDirection:"column",position:"relative"}}>
+            {cell_2.map((item:any,index:any)=>(<MainContentsRender item={item} cell={"cell_2"} renderType={cell} index={index} key={item.id}/>))}
             </div>}
         </div>
       </div>

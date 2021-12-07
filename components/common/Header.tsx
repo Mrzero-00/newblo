@@ -35,29 +35,34 @@ function Header(){
         }
     },[])
     return(
-        <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"16px 48px",height:"72px"}}>
-            
-            <div className="logoBox" style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
-                <Link href="/">
-                    <a className="mainLogo"></a>
-                </Link>
-            </div>
-            <div>
-                <div className="loginBox">
-                    {/* <div  onClick={()=>{console.log(window.location)}}>dd</div> */}
-                    {!loginState&&
-                    <Link href="/login">
-                        <a className="nomalBtn">로그인</a>
+        <div style={{width:"100%",display:"flex",justifyContent:"center"}}>
+            <div style={{width:"100%",maxWidth:"1560px",display:"flex",justifyContent:"space-between",alignItems:"center",height:"64px",padding:"0px 20px"}}>
+                <div className="logoBox">
+                    <Link href="/">
+                        <a style={{display:"flex",alignItems:"center"}}>
+                            <div className="mainLogo"></div>
+                            <div className="mainLogoText"></div>
+                        </a>
                     </Link>
-                    }
-                    {loginState&&
-                    <Link href="/editor">
-                        <a className="emptyBtn">새 글쓰기</a>
-                    </Link>
-                    }
-                    {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://newblo.co.kr${userState.profile_img}")`}} onClick={()=>{setModalState(!modalState)}}></div>}
+                </div>
+                <div>
+                    <div className="loginBox">
+                        {/* <div  onClick={()=>{console.log(window.location)}}>dd</div> */}
+                        {!loginState&&
+                        <Link href="/login">
+                            <a className="nomalBtn">로그인</a>
+                        </Link>
+                        }
+                        {loginState&&
+                        <Link href="/editor">
+                            <a className="emptyBtn">새 글쓰기</a>
+                        </Link>
+                        }
+                        {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://newblo.co.kr${userState.profile_img}")`}} onClick={()=>{setModalState(!modalState)}}></div>}
+                    </div>
                 </div>
             </div>
+
             {modalState&&<div className="modalWindow">
                 <Link href={`/${userState.my_url}`}>
                 <a className="modalList">

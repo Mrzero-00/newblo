@@ -45,8 +45,8 @@ function UserContetnsRender(item:any){
                             </div>
                         </div>
                         {(!item.item.thumbnail||item.item.thumbnail === ""||item.item.thumbnail !== "undefined")&&
-                        <div className="userBlog_mainContents_textList_img" style={{backgroundImage:`url(${item.item.thumbnail})`}}>
-                        </div>}
+                        <img className="userBlog_mainContents_textList_img" src={item.item.thumbnail}>
+                        </img>}
                     </div>
 
                 </div>

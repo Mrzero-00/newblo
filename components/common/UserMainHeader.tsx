@@ -61,7 +61,7 @@ function UserMainHeader(props:any){
                         }
                         {loginState&&
                         <Link href="/editor">
-                            <a className="emptyBtn">새 글쓰기</a>
+                            <a className="greenBtn">새 글쓰기</a>
                         </Link>
                         }
                         {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://newblo.co.kr${userState.profile_img}")`}} onClick={()=>{setModalState(!modalState)}}></div>}

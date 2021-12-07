@@ -1,11 +1,13 @@
 // @flow
 import * as React from 'react';
-import {useState,useEffect} from "react";
+import {useState,useEffect,useRef} from "react";
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(()=>import("react-quill"),{ssr:false});
 import TextareaAutosize from 'react-textarea-autosize';
+import EditorjsComponents from '../components/editor/EditorjsComponents';
 import axios from 'axios';
+
 
 
 function Editor(){
@@ -19,7 +21,6 @@ function Editor(){
     const [prePage,setPrePage] =useState<string>("");
     const [objBtnState,setObjBtnState] = useState<boolean>(true);
     const [inputNum,setInputNum] = useState<any>(0);
-
 
     let textEditor:any;
     const handleChange_title=(e:any)=>{
@@ -59,10 +60,12 @@ function Editor(){
                 if(textEditor.children[i].innerText !=="\n"){
                     if(objBtnList.children[i+1]!==undefined){
                         objBtnList.children[i+1].style.display = "none";
+                        objBtnList.children[i+1].style.top = `${top-32}px`;
                     }
                 }else{
                     if(objBtnList.children[i+1]!==undefined){
                         objBtnList.children[i+1].style.display = "block";
+                        objBtnList.children[i+1].style.top = `${top-32}px`;
                     }
                 }
                 
@@ -73,13 +76,12 @@ function Editor(){
 
         addBtnCreate.style.top = `${top-32}px`;
         if(objBtnList?.children.length-1 === textEditor.children.length){
-
+            
         }else if(objBtnList?.children.length-1 >= textEditor.children.length){
             objBtnList?.removeChild(objBtnList.lastChild);
         }else{
             objBtnList?.appendChild(addBtnCreate);
         }
-
     }
 
     const imgSendApi = async(img:any)=>{
@@ -151,17 +153,32 @@ function Editor(){
 
 
     useEffect(()=>{
-        setIsLoading(true);
-        if(sessionStorage.getItem("user_info")){
+        // setIsLoading(true);
+        // if(sessionStorage.getItem("user_info")){
 
-        }else{
-            const alink = document.createElement("a");
-            alink.href="/";
-            alink.click();    
-        }
-        setPrePage(sessionStorage.getItem('pre_url')!);
+        // }else{
+        //     const alink = document.createElement("a");
+        //     alink.href="/";
+        //     alink.click();    
+        // }
+        // setPrePage(sessionStorage.getItem('pre_url')!);
+        // let editorOn:any;
+        // setTimeout(() => {
+        //     editorOn = document.querySelector(".editorText");
+        // }, 0);
+        // setTimeout(() => {
+        //     addTooltip(editorOn);
+        // }, 600);
+
+
     },[])
 
+    const keyDownLogic =(e:any)=>{
+        if(e.key === "Enter"){
+        }
+    }
+
+    console.log(text);
     useEffect(()=>{
         textEditor = document.querySelector('.ql-editor');
 
@@ -229,35 +246,40 @@ function Editor(){
             <TextareaAutosize onChange={(e:any)=>{handleChange_summary(e)}} value={summary} onKeyDown={(e:any)=>{if(e.keyCode===13){setSummaryEnter(true)}else{setSummaryEnter(false)}}} placeholder="요약글을 작성해주세요"></TextareaAutosize>
             </div>
             <div className="editorText">
-                <ReactQuill
+                {/* <ReactQuill
                     theme={"bubble"}
                     onChange={handleChange_text}
-                    // onKeyDown={addObjBtnState}
-                    
+                    onKeyDown={keyDownLogic}
                     value={text}
                     modules={{
-                        toolbar:[
+
+                        toolbar:
+                        [
                         [{'header': '2'}],
-                        ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-                        [{ align: '' }, { align: 'center' }, { align: 'right' }, { align: 'justify' }],
-                        [{'list': 'ordered'}, {'list': 'bullet'}, 
-                         {'indent': '-1'}, {'indent': '+1'}],
+                        ['bold', 'italic', 'underline', 'strike',],
+                        [ 'blockquote','code-block'],
+                        [{ align: '' }, { align: 'center' }, { align: 'right' }],
+                        [{'list': 'ordered'}, {'list': 'bullet'}],
                         ['link', 'video'],
-                        ['clean']
-                      ],  clipboard: {
+                        ['clean'],
+                        
+                        ],  
+
+                      
+                      clipboard: {
                         // toggle to add extra line breaks when pasting HTML:
                         matchVisual: false,
                       }}}
                     formats={[
                         'header', 'font', 'size',
                         'bold', 'italic', 'underline', 'strike', 'blockquote',
-                        'align',
-                        'list', 'bullet', 'indent',
-                        'link', 'image', 'video'
+                        'align','list', 'bullet','code-block',
+                        'link', 'image', 'video',
                       ]}
                     bounds={'.editorBox'}
                     placeholder={"내용을 입력해주세요"}
-                ></ReactQuill>
+                ></ReactQuill>  */}
+                <EditorjsComponents setText={setText} text={text}/>
 
                 <form className="objBtnList" onClick={(e:any)=>{
                     if(e.target.className!=="objBtnList" ){
