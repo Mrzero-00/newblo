@@ -11,13 +11,10 @@ function ModifyText(){
     const [title,setTitle] = useState<string>("");
     const [summary,setSummary] = useState<string>("");
     const [text,setText] = useState<string>("");
-    const [thumbnail,setThumbnail] = useState<string>("");
-    const [isLoading,setIsLoading] = useState<boolean>(false);
+    const [thumbnail,setThumbnail] = useState<any>("");
     const [titleEnter,setTitleEnter] =useState<boolean>(false);
     const [summaryEnter,setSummaryEnter] =useState<boolean>(false);
     const [prePage,setPrePage] =useState<string>("");
-    const [objBtnState,setObjBtnState] = useState<boolean>(true);
-    const [inputNum,setInputNum] = useState<number>(0);
 
 
     const handleChange_title=(e:any)=>{
