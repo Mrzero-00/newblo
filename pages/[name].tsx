@@ -92,7 +92,7 @@ console.log(userPageState);
               <UserMainHeader userUrl={userPageState.user.my_url} nick_name={userPageState.user.nick_name}></UserMainHeader>
               <div style={{width:"100%",maxWidth:"1160px",marginTop:"52px"}}>
                 <div className="userBlog_profileBox">
-                    <div  className="userBlog_profileBox_thumbnail" style={{backgroundImage:`url("https://www.newblo.co.kr${userPageState.user.profile_img}")`}}></div>
+                    <div  className="userBlog_profileBox_thumbnail" style={{backgroundImage:`url("https://proveit.cafe24.com${userPageState.user.profile_img}")`}}></div>
                     <div  className="userBlog_profileBox_info">
                         <div className="userBlog_profileBox_info_nickname">{userPageState.user.nick_name}</div>
                         <div className="userBlog_profileBox_info_summary">{userPageState.user.summary}</div>
