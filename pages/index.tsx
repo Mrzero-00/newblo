@@ -80,7 +80,7 @@ const Home: NextPage = () => {
     }
   ]);
 
-  let cell: 1|2|3 =1;
+  let cell: 1|2 =1;
 
   const size:any = useWindowSize();
 
@@ -121,7 +121,7 @@ const Home: NextPage = () => {
   function cellCount(){
     if(size.width>1024){
       cell=2;
-    }else if(size.width>=1024){
+    }else if(size.width<=1024){
       cell=1;
     }
     
@@ -175,12 +175,11 @@ const Home: NextPage = () => {
 
   useEffect(()=>{
     listGetApi();
-    //setRenderState(true);
   },[])
   
-
   cellCount();
   inputCell();
+  console.log(cell);
   return (
     <>
     {renderState&&<div>
@@ -188,10 +187,10 @@ const Home: NextPage = () => {
       <Header></Header>
       <div style={{display:"flex",justifyContent:"center"}}>
         <div style={{display:"flex",width:"100%",justifyContent:"center"}}>
-          <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:cell===2?"flex-end":"center",position:"relative"}}>
+          <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center",position:"relative"}}>
             {cell_1.map((item:any,index:any)=>(<MainContentsRender item={item} cell={"cell_1"} renderType={cell}  index={index} key={item.id}/>))}
-          </div>
-            {cell===2&&<div style={{width:"100%",display:"flex",flexDirection:"column",position:"relative"}}>
+            </div>
+            {cell>=2&&<div style={{width:"100%",display:"flex",flexDirection:"column",position:"relative"}}>
             {cell_2.map((item:any,index:any)=>(<MainContentsRender item={item} cell={"cell_2"} renderType={cell} index={index} key={item.id}/>))}
             </div>}
         </div>
