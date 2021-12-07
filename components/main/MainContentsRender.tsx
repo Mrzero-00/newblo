@@ -27,7 +27,7 @@ function MainContentsRender(item:any){
             justifyContent:"flex-end",
             flexDirection:"row-reverse",
             maxWidth:"780px",
-            marginLeft:(item.cell==="cell_1"&&item.renderType===2)&&"auto",
+            marginLeft:(item.cell==="cell_1"&&item.renderType===2)?"auto":"0px",
             zIndex:999,
             height: "264px",
             padding:"32px 20px 32px 20px",
