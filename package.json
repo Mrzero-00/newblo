@@ -8,7 +8,6 @@
     "lint": "next lint",
     "netlify-deploy": "next build && next export"
   },
-
   "cacheDirectories": [
     "node_modules/",
     ".next/cache/"
