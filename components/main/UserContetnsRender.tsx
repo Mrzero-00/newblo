@@ -1,8 +1,6 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-import dynamic from 'next/dynamic';
-
 type Props = {
     id:number;
     title:string;
@@ -19,8 +17,6 @@ type Props = {
 };
 
 function UserContetnsRender(item:any){
-    
-    console.log(item.item.thumbnail);
     return(
         <Link href={`/${item.item.my_url}/${item.item.id}`}>
             <a style={{
@@ -31,13 +27,13 @@ function UserContetnsRender(item:any){
                 }}
                 className="userPage_item">
                 <div>
-                    <h4 className="userPageTitle">{item.item.title}</h4>
                     <div style={{
                         width:"100%",
                         display:(item.item.thumbnail === "" || item.item.thumbnail === "undefined")?"block":"flex",
                         justifyContent:"space-between",
                         }}>
-                        <div style={{minWidth:"360px"}}>
+                        <div style={{minWidth:"460px"}}>
+                            <h4 className="userPageTitle">{item.item.title}</h4>
                             <p className="userPageSummary">{item.item.summary}</p>
                             <div className="userPageInfoBox">
                                 {/* <div className="userPageComments">{item.item.comments}개의 코멘트 ·</div> */}

@@ -6,9 +6,12 @@ function PwReset(){
     return (
       <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
           <Link href="/">
-              <a className="mainLogo loginPageLogo"></a>
+              <a style={{display:"flex",alignItems:"center",marginTop:"32px",zIndex:999}}>
+                  <div className="mainLogo"></div>
+                  <div className="mainLogoText"></div>
+              </a>
           </Link>
-          <div className="loginPageBg">
+          <div className="loginPageBg" style={{marginTop:"-32px"}}>
             <div className="loginPageBg_title">비밀번호 변경</div>
             <div className="loginPageBg_sub">새로운 비밀번호를 입력해주세요.</div>
           </div>

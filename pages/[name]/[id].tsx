@@ -41,12 +41,13 @@ function About(){
             if(e.data.blog ===null){
 
             }else{
-              //console.log(e.data.blog);
+              console.log(e.data.blog);
               setTextInfo({...e.data.blog,maintext:JSON.parse(e.data.blog.maintext)});
-              setRenderState(true);
             }
           }else{
           }
+          }).then(()=>{
+            setRenderState(true);
           })
       }catch{
       }
@@ -153,4 +154,3 @@ function About(){
 };
 
 export default About;
-

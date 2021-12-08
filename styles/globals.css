@@ -5,20 +5,20 @@ body {
   margin: 0;
 }
 @font-face {
-  font-family: "Noto Sans KR";
+  font-family: "Pretendard";
   font-weight: 400;
-  src: url("./font/NotoSansKR-Light.otf") format("opentype");
+  src: url("./font/Pretendard-Light.otf") format("opentype");
 }
 
 /* @font-face {
-  font-family: "Noto Sans KR";
+  font-family: "Pretendard";
   font-weight: 400;
   src: url("./font/NotoSansKR-Regular.otf") format("opentype");
 } */
 @font-face {
-  font-family: "Noto Sans KR";
+  font-family: "Pretendard";
   font-weight: 700;
-  src:  url("./font/NotoSansKR-Bold.otf") format("opentype");
+  src:  url("./font/Pretendard-Bold.otf") format("opentype");
 }
 
 a {
@@ -31,9 +31,10 @@ p{
 }
 * {
   box-sizing: border-box;
-  font-family: "Noto Sans KR", sans-serif;
+  font-family: "Pretendard", sans-serif;
   padding: 0;
   margin: 0;
+  word-break:break-all;
 }
 
 input:focus{
@@ -178,10 +179,11 @@ input:focus{
 }
 
 .mainItemTitle{
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 30px;
+  line-height: 1.6;
   max-height: 76px;
+  overflow: hidden;
   color:#323232;
   margin-bottom: 10px;
 }
@@ -193,6 +195,7 @@ input:focus{
   background-size: cover;
   background-color: #fff;
   margin-left: 40px;
+  object-fit: cover;
 }
 
 .mainItemUserBox{
@@ -201,8 +204,8 @@ input:focus{
 }
 
 .mainItemUserProfile{
-  width: 32px;
-  height: 32px;
+  width: 24px;
+  height: 24px;
   border-radius: 50%;
   margin-right: 8px;
   background-color: #fff;
@@ -211,9 +214,10 @@ input:focus{
 }
 
 .mainItemUserName{
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 400;
-  line-height: 24px;
+  /* line-height: 1.6; */
+  letter-spacing: -0.01em;
   color:#787878;
 
 }
@@ -222,6 +226,7 @@ input:focus{
   font-size: 16px;
   font-weight: 400;
   max-height: 52px;
+  overflow: hidden;
   line-height: 24px;
   color: #787878;
   margin-bottom: 10px;
@@ -302,6 +307,9 @@ input:focus{
   max-width:960px;
   height:375px;
   background-image: url(./img/bg_login.svg);
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -364,6 +372,9 @@ input:focus{
   width:100%;
   max-width:960px;
   height:375px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   background-image: url(./img/bg_signup.svg);
 }
 
@@ -393,6 +404,9 @@ input:focus{
   width:100%;
   max-width:960px;
   height:375px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
   background-image: url(./img/bg_findpw.svg);
 }
 
@@ -513,7 +527,7 @@ input:focus{
 }
 
 .userLogo{
-    font-family: Noto Sans KR;
+    font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
     font-weight: 700;
@@ -533,8 +547,9 @@ input:focus{
 .textPageContents{
   width: 100%;
   display: flex;
-  max-width: 680px;
+  max-width: 720px;
   flex-direction: column;
+  padding:0px 20px;
   align-items: center;
   margin-top: 8px;
 }
@@ -731,7 +746,7 @@ input:focus{
 }
 
 .userMainPageMain_textBox_blogName{
-  font-family: Noto Sans KR;
+  font-family: Pretendard;
   font-size: 40px;
   font-weight: 700;
   line-height: 56px;
@@ -1057,37 +1072,37 @@ border-bottom: 1px solid #c4c4c4;
 
 }
 
-
-.userPageView{
-
-}
 .userBlog_mainContents_textList_img{
-  width: 360px;
-  height: 211px;
-  min-width: 360px;
-  border-radius: 8px;
+  width: 260px;
+  height: 200px;
+  min-width: 260px;
   margin-left:40px;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  object-fit: cover;
 }
 
 .userPageTitle{
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 700;
-  line-height: 32px;
-  letter-spacing: -0.02em;
+  line-height: 1.6;
+  max-height: 76px;
+  overflow: hidden;
+  letter-spacing: -0.01em;
   color:#323232;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .userPageSummary{
   font-size: 16px;
+  max-height: 52px;
   font-weight: 400;
-  line-height: 26px;
+  line-height: 1.6;
+  overflow: hidden;
   letter-spacing: -0.01em;
   color:#787878;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .userPageInfoBox{
@@ -1095,7 +1110,7 @@ border-bottom: 1px solid #c4c4c4;
   align-items: center;
   font-size: 12px;
   font-weight: 400;
-  line-height: 19px;
+  line-height: 1.6;
   letter-spacing: -0.01em;
   color:#787878;
 }
@@ -1127,6 +1142,7 @@ border-bottom: 1px solid #c4c4c4;
   width: 100vw;
   height: 100vh;
   background-color: rgba(0,0,0,0.5);
+  z-index: 9999;
 }
 
 .deletWindow_alret{
@@ -1140,6 +1156,7 @@ border-bottom: 1px solid #c4c4c4;
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 9999;
 }
 
 .deletWindow_alret_text{
@@ -1238,4 +1255,53 @@ border-bottom: 1px solid #c4c4c4;
   padding:0px;
   margin:16px 0px;
   background-color: #c4c4c4;
+}
+
+.mainPage_categoryBox{
+  width: 100%;
+  height: 64px;
+  border-top:1px solid #c4c4c4;
+  border-bottom:1px solid #c4c4c4;
+  display: flex;
+  justify-content: center;
+}
+
+.mainPage_categoryBox_category{
+  width: 100%;
+  height: 100%;
+  max-width: 1560px;
+  padding:0px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.mainPage_categoryBox_category_item_off{
+    background: #F2EFE5;
+    border: 1px solid #C4C4C4;
+    box-sizing: border-box;
+    border-radius: 20px;
+    color:#787878;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 69px;
+    height: 32px;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+.mainPage_categoryBox_category_item_on{
+  background: #323232;
+  box-sizing: border-box;
+  border-radius: 20px;
+  color:#fff;
+  font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 69px;
+  height: 32px;
+  cursor: pointer;
+  margin-right: 4px;
 }

@@ -71,13 +71,16 @@ function Login(){
     return (
       <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
           <Link href="/">
-              <a className="mainLogo loginPageLogo"></a>
+              <a style={{display:"flex",alignItems:"center",marginTop:"32px",zIndex:999}}>
+                  <div className="mainLogo"></div>
+                  <div className="mainLogoText"></div>
+              </a>
           </Link>
-          <div className="loginPageBg">
+          <div className="loginPageBg" style={{marginTop:"-32px"}}>
             <div className="loginPageBg_title">로그인</div>
             <div className="loginPageBg_sub">돌아오셨군요.</div>
           </div>
-          <div style={{width:"100%",maxWidth:"560px",marginTop:"-58px"}}>
+          <div style={{width:"100%",maxWidth:"596px",marginTop:"-58px",padding:"0px 18px"}}>
             <div className="inputPageTextBox">
               <div className="userInputPage">이메일주소</div>
               {!emailState&&<div className="errorMsg">올바른 이메일 형식이 아닙니다.</div>}

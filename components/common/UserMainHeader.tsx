@@ -53,10 +53,12 @@ function UserMainHeader(props:any){
 
     return(
         <>
-           {renderState&&<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",padding:"16px 48px",height:"72px",width:"100%"}}>
-                <div className="logoBox" style={{display:"flex",flexDirection:"column",justifyContent:"center"}}>
+           {renderState&&<div style={{display:"flex",justifyContent:"space-between",alignItems:"center",height:"64px",width:"100%",padding:"0px 20px",maxWidth:"1560px"}}>
+                <div className="logoBox" style={{display:"flex",alignItems:"center"}}>
+                    <Link href="/">
+                            <a className="mainLogo" style={{marginRight:"8px"}}></a>
+                    </Link>
                     <Link href={`/${props.userUrl}`}>
-                        {/* {props.blog_name ===""?<a className="userLogo">{`${props.nick_name}`}의 블로그</a> : <a className="userLogo">{props.blog_name}</a>} */}
                         <a className="userLogo">{`${props.nick_name}`}의 블로그</a>
                     </Link>
                 </div>
@@ -74,29 +76,26 @@ function UserMainHeader(props:any){
                         </Link>
                         }
                         {loginState&&<div className="headerMyProfile" style={{backgroundImage:`url("https://proveit.cafe24.com${userState.profile_img}")`}}></div>}
-                        <Link href="/">
-                            <a className="mainLogo" style={{marginLeft:"20px"}}></a>
+                    </div>
+                    {modalState&&<div className="modalWindow">
+                        <Link href={`/${userState.my_url}`}>
+                        <a className="modalList" onClick={clickEvt}>
+                            <div className="modalListIcon modalIcon_myblog"></div>
+                            <div>내 블로그</div>
+                        </a>
                         </Link>
-                    </div>
+                        <Link href={`/${userState.my_url}/admin`}>
+                        <a className="modalList" onClick={clickEvt}>
+                            <div className="modalListIcon modalIcon_setting"></div>
+                            <div>관리자</div>
+                        </a>
+                        </Link>
+                        <div className="modalList" onClick={logoutLogic}>
+                            <div className="modalListIcon modalIcon_logout"></div>
+                            <div>로그아웃</div>
+                        </div>
+                    </div>}
                 </div>
-                {modalState&&<div className="modalWindow">
-                    <Link href={`/${userState.my_url}`}>
-                    <a className="modalList" onClick={clickEvt}>
-                        <div className="modalListIcon modalIcon_myblog"></div>
-                        <div>내 블로그</div>
-                    </a>
-                    </Link>
-                    <Link href={`/${userState.my_url}/admin`}>
-                    <a className="modalList" onClick={clickEvt}>
-                        <div className="modalListIcon modalIcon_setting"></div>
-                        <div>관리자</div>
-                    </a>
-                    </Link>
-                    <div className="modalList" onClick={logoutLogic}>
-                        <div className="modalListIcon modalIcon_logout"></div>
-                        <div>로그아웃</div>
-                    </div>
-                </div>}
             </div>}
         </>
     )

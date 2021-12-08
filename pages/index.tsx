@@ -80,6 +80,8 @@ const Home: NextPage = () => {
     }
   ]);
 
+  const [category,setCategory] = useState<any>(0);
+
   let cell: 1|2 =1;
 
   const size:any = useWindowSize();
@@ -119,7 +121,7 @@ const Home: NextPage = () => {
   }
 
   function cellCount(){
-    if(size.width>1024){
+    if(size.width>1024&&contentsArray.length>=2){
       cell=2;
     }else if(size.width<=1024){
       cell=1;
@@ -179,12 +181,21 @@ const Home: NextPage = () => {
   
   cellCount();
   inputCell();
-  console.log(cell);
   return (
     <>
     {renderState&&<div>
       <HeadInfo pageType="defalut" pagetitle="뉴블로 | 뉴블로" pagedescription="뉴블로 설명글"></HeadInfo>
       <Header></Header>
+      <div className="mainPage_categoryBox">
+        <div className="mainPage_categoryBox_category">
+          <div className={category===0?"mainPage_categoryBox_category_item_on":"mainPage_categoryBox_category_item_off"} onClick={()=>{setCategory(0)}}>트렌딩</div>
+          <div className={category===1?"mainPage_categoryBox_category_item_on":"mainPage_categoryBox_category_item_off"} onClick={()=>{setCategory(1)}}>최신</div>
+          <div className={category===2?"mainPage_categoryBox_category_item_on":"mainPage_categoryBox_category_item_off"} onClick={()=>{setCategory(2)}}>맞춤</div>
+          <div className={category===3?"mainPage_categoryBox_category_item_on":"mainPage_categoryBox_category_item_off"} onClick={()=>{setCategory(3)}}>ISSUE</div>
+          <div className={category===4?"mainPage_categoryBox_category_item_on":"mainPage_categoryBox_category_item_off"} onClick={()=>{setCategory(4)}}>에세이</div>
+          <div className={category===5?"mainPage_categoryBox_category_item_on":"mainPage_categoryBox_category_item_off"} onClick={()=>{setCategory(5)}}>TIL</div>
+        </div>
+      </div>
       <div style={{display:"flex",justifyContent:"center"}}>
         <div style={{display:"flex",width:"100%",justifyContent:"center"}}>
           <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center",position:"relative"}}>

@@ -13,7 +13,8 @@
     ".next/cache/"
   ],
   "dependencies": {
-    "@editorjs/editorjs": "^2.22.2",
+    "@editorjs/editorjs": "^2.19.3",
+    "@editorjs/nested-list": "^1.0.2",
     "@editorjs/paragraph": "^2.8.0",
     "axios": "^0.24.0",
     "medium-editor": "^5.23.3",

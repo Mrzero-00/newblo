@@ -56,16 +56,19 @@ function Signup(){
     return (
       <div style={{width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
           <Link href="/">
-              <a className="mainLogo loginPageLogo"></a>
+              <a style={{display:"flex",alignItems:"center",marginTop:"32px",zIndex:999}}>
+                  <div className="mainLogo"></div>
+                  <div className="mainLogoText"></div>
+              </a>
           </Link>
-          <div className="signupPageBg">
+          <div className="signupPageBg" style={{marginTop:"-32px"}}>
           </div>
             <div className="signupPageBg_title">어서오세요!</div>
             <div className="signupPageBg_sub">
                 뉴블로는 무슨무슨무슨 블로그입니다.<br/>
                 여기서 어떤어떤어떤 일을 하고 글을 쓰세요!
             </div>
-          <div style={{width:"100%",maxWidth:"560px"}}>
+          <div style={{width:"100%",maxWidth:"596px",padding:"0px 18px"}}>
             <div className="inputPageTextBox">
               <div className="userInputPage">이메일 주소 인증</div>
               {emailState&&<div className="errorMsg">올바른 이메일 형식이 아닙니다.</div>}

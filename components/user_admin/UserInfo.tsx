@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { json } from 'node:stream/consumers';
 import * as React from 'react';
 import { useState ,useEffect } from 'react';
 
@@ -44,9 +45,9 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
 
     const signupInfoApi = async(click:any,img:any)=>{
         const {name, value} = click.target;
-
+        console.log(name);
         if(name === "nick_name"){
-            if(nicknameCheck(userInfo.nick_name)){
+            if(nicknameCheck(changeInfo.nick_name)){
                 const data = new FormData();
                 data.append("type","modifyinfo");
                 data.append("email",userInfo.email);
@@ -65,6 +66,7 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
                     }
                   ).then((e:any)=>{
                     if(e.data.ret_code ==="0000"){
+                        window.sessionStorage.setItem("user_info",JSON.stringify({...JSON.parse(sessionStorage.getItem("user_info")!),nick_name:changeInfo.nick_name}));
                         setUserInfo({...userInfo,nick_name:changeInfo.nick_name});
                         setChangeState_nickName(false);       
                     }else{
@@ -74,6 +76,7 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
                 }catch{
                 }
             }else{
+                console.log("닉네임 형식오류");
                 if(!nicknameCheck(userInfo.nick_name)){
                     setNicknameState(false);
                 }
@@ -223,6 +226,7 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
     }
 
     const nicknameCheck =(str:string)=>{
+        console.log(str);
         var pattern_num = /[0-9]/;	// 숫자
         var pattern_text = /[a-z]/;	// 영문 
         var pattern_kor = /[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/; // 한글체크
@@ -258,8 +262,7 @@ function UserInfo({userInfomation,userInfoApi}:{userInfomation:any,userInfoApi:F
     useEffect(()=>{
         setUserInfo(userInfomation);
         setChangeInfo(userInfomation);
-        setCurrentImg(`https://newblo.co.kr${userInfomation.profile_img}`);
-        console.log(userInfomation);
+        setCurrentImg(`https://proveit.cafe24.com${userInfomation.profile_img}`);
     },[])
     
     return (

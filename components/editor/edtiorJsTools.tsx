@@ -7,12 +7,14 @@ import List from "@editorjs/list";
 import Marker from "@editorjs/marker";
 import Quote from "@editorjs/quote";
 import Raw from "@editorjs/raw";
+import CodeTool from "@editorjs/code";
 import SimpleImage from "@editorjs/simple-image";
 import Table from "@editorjs/table";
 import Warning from "@editorjs/warning";
 import Header from '@editorjs/header'
 import ImageTool from '@editorjs/image';
 import axios from "axios";
+import NestedList from '@editorjs/nested-list';
 
 
 const imgSendApi = async(img:any)=>{
@@ -43,9 +45,18 @@ const imgSendApi = async(img:any)=>{
 export const EDITOR_JS_TOOLS = {
   embed: Embed,
   table: Table,
-  list: List,
+  list:{
+    class: NestedList,
+    inlineToolbar: true,
+  },
+  code :CodeTool,
   warning: Warning,
-  linkTool: LinkTool,
+  // linkTool: {
+  //   class: LinkTool,
+  //   config: {
+  //     endpoint: 'https://proveit.cafe24.com/fetchUrl', // Your backend endpoint for url data fetching
+  //   }
+  // },
   image: {
     class: ImageTool,
     config: {
@@ -61,6 +72,7 @@ export const EDITOR_JS_TOOLS = {
         uploadByFile(file){
           // your own uploading logic here
           return imgSendApi(file).then((e) => {
+            console.log(e);
             return {
               success: 1,
               file: {
@@ -79,12 +91,18 @@ export const EDITOR_JS_TOOLS = {
       }
     }
   },
-  raw: Raw,
+  // raw: Raw,
   header: Header,
   quote: Quote,
-  marker: Marker,
-  checklist: CheckList,
+  marker:{
+    class: Marker,
+    shortcut: 'Ctrl+M',
+  },
+  checklist: {
+    class: CheckList,
+    inlineToolbar: true,
+  },
   delimiter: Delimiter,
   inlineCode: InlineCode,
-  simpleImage: SimpleImage,
+  // simpleImage: SimpleImage,
 }
