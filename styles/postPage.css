@@ -1,0 +1,141 @@
+
+
+.contentsPage{
+    max-width: 736px;
+    width: 100%;
+    padding:0px 8px;
+    margin: 0 auto;
+    resize: none;
+}
+
+.contents__title{
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    font-family: "Pretendard";
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 56px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color:#323232;
+    background-color: transparent;
+    margin-bottom: 21px;
+}
+
+.contents__summary{
+    width: 100%;
+    resize: none;
+    border: none;
+    outline: none;
+    font-family: "Pretendard";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color:#787878;
+    background-color: transparent;
+    margin-bottom: 17px;
+    
+}
+
+.contents__writerInfoBox{
+    display: flex;
+}
+
+.contents__writerInfoBox_profile{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background-color: #000;
+    margin-right: 8px;
+}
+
+.contents__writerInfoBox_writer{
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    margin-bottom: 1px;
+    color: #787878;
+}
+
+.contents__writerInfoBox_time{
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #787878;
+}
+
+.contents__footer{
+    display: flex;
+    max-width: 736px;
+    width: 100%;
+    padding:0px 8px;
+    margin: 0 auto;
+    resize: none;
+}
+
+.contents__footer_profileImg{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-right: 32px;
+    background-color: #000;
+}
+
+.contents__footer_writerInfo_nickName{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 36px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #000;
+    margin-bottom: 8px;    
+}
+
+.contents__footer_writerInfo_summary{
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #292F33;
+}
+
+.contents__footer_subscribe{
+    display: flex;
+}
+
+.contents__footer_subscribe__btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    color: #787878;
+    border:1px solid #f0f0f0;
+    width: 69px;
+    height: 32px;
+    border-radius: 20px;
+}

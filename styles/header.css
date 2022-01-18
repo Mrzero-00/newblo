@@ -1,0 +1,90 @@
+.gnb{
+    width:100%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    height:64px;
+    padding:0px 40px;
+    position:relative;
+}
+
+.mainLogo{
+    width: 159px;
+    height: 32px;
+    background-image: url(./img/newblo_fullLogo.svg);
+}
+
+.loginBox{
+    display: flex;
+    align-items: center;
+}
+
+.loginBox__signUpBtn{
+    font-family: Pretendard;
+    width: 108px;
+    height: 40px;
+    background-color: #292f33;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 40px;
+    margin-left: 16px;
+}
+
+.loginBox__emptyBtn{
+    font-family: Pretendard;
+    cursor: pointer;
+    color: #292f33;
+    font-size: 16px;
+    line-height: 1.6;
+    letter-spacing: -1%;
+    margin-left: 16px;
+}
+
+.loginBox__userProfileImg{
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    min-width: 36px;
+    cursor: pointer;
+    background-size: cover;
+    background-color: #292f33;
+    margin-left: 16px;
+}
+
+.modalWindow{
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+.nav{
+    display: flex;
+    align-items: center;
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    margin-left: 24px;
+}
+
+.menu_item{
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+    color:#292f33;
+}
+
+.gnb--post{
+    opacity: 0.2;
+    transition: 0.3s;
+}
+
+.gnb--post:hover{
+    opacity: 1;
+}

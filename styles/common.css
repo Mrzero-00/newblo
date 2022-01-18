@@ -1,0 +1,22 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: "Pretendard";
+    font-weight: 400;
+    src: url("./font/Pretendard-Light.otf") format("opentype");
+  }
+  @font-face {
+    font-family: "Pretendard";
+    font-weight: 700;
+    src:  url("./font/Pretendard-Bold.otf") format("opentype");
+  }
+
+a{
+    text-decoration: none;
+}
+
+input:focus { outline: none; }

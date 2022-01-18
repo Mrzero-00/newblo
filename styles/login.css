@@ -1,0 +1,97 @@
+.inputArea{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inputArea__logo{
+    margin-bottom: 20px;
+}
+
+.inputArea__goToSignUp{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #292F33;
+    margin-bottom: 16px;
+}
+
+.inputArea__goToSignUp--alink{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #14B78E;
+    margin-left: 4px;
+}
+
+.inputArea__input{
+    margin-bottom: 20px;
+}
+
+.inputArea__label{
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    margin-bottom: 4px;
+    color:#292F33;
+}
+
+.inputArea__inputBox{
+    width: 100%;
+    height: 48px;
+    background: #FFFFFF;
+    border: 1px solid #787878;
+    box-sizing: border-box;
+    border-radius: 4px;
+    padding:8px;
+}
+
+.inputArea__Btn{
+    width: 100%;
+    height: 48px;
+    background: #292F33;
+    box-sizing: border-box;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    cursor: pointer;
+}
+
+.imgArea__login{
+    width: 100%;
+    background-image: url(./img/img_login.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.imgArea__signup{
+    width: 100%;
+    background-image: url(./img/img_signup.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
