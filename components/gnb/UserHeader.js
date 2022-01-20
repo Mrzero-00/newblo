@@ -27,14 +27,15 @@ function UserHeader(props){
             setLoginState(true);
             setUserState(JSON.parse(sessionStorage.getItem("user_info")));
         }
+        window.addEventListener("click",clickHandle);
     },[])
 
-    window.addEventListener("click",(e)=>{
+    const clickHandle = (e)=>{
         if(e.target.classList[0]==="loginBox__userProfileImg"){
         }else{
             setModalState(false);
         }
-    })
+    }
 
     return(
         <div className='gnb'>
@@ -62,18 +63,30 @@ function UserHeader(props){
                 }
                 {loginState&&<div 
                 className="loginBox__userProfileImg" 
-                style={{backgroundImage:`url("https://proveit.cafe24.com${userState.profile_img}")`}}
+                // style={{backgroundImage:`url("https://proveit.cafe24.com${userState.profile_img}")`}}
                 onClick={()=>{setModalState(!modalState)}}
                 ></div>}
             </div>
             {modalState&&<div className="modalWindow">
-                <Link href={`/${userState.my_url}`}>
+                <Link href={`/${userState.blogName}`}>
                 <a className="modalList">
                     <div className="modalListIcon modalIcon_myblog"></div>
                     <div>내 블로그</div>
                 </a>
                 </Link>
-                <Link href={`/${userState.my_url}/admin`}>
+                <Link href={`/editor`}>
+                <a className="modalList">
+                    <div className="modalListIcon modalIcon_editor"></div>
+                    <div>새 글쓰기</div>
+                </a>
+                </Link>
+                <Link href={`/draftList`}>
+                <a className="modalList">
+                    <div className="modalListIcon modalIcon_draft"></div>
+                    <div>임시 저장 글</div>
+                </a>
+                </Link>
+                <Link href={`/draftList`}>
                 <a className="modalList">
                     <div className="modalListIcon modalIcon_setting"></div>
                     <div>관리자</div>

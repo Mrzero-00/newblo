@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import {useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Header from '../components/gnb/Header';
 import HeadInfo from '../components/HtmlHeader/HeadInfo';
 import Banner from '../components/main/Banner';
@@ -41,7 +41,6 @@ const Home = () => {
           data
         }
       ).then((e)=>{
-        console.log(e);
         setRenderState(true);
         if(e.data.code ==="0000"){
           setContentsArray(e.data.data);
@@ -54,20 +53,19 @@ const Home = () => {
     listGetApi();
   },[])
 
-  const handleScroll = useCallback((e) => {
-    console.log(e)
-  }, [])
+  // const handleScroll = useCallback((e) => {
+  //   console.log(e)
+  // }, [])
   
-  useLayoutEffect(() => {
-    if (layoutRef.current) {
-      layoutRef.current.addEventListener('scroll', handleScroll);
-      return () => layoutRef.current.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+  // useLayoutEffect(() => {
+  //   if (layoutRef.current) {
+  //     layoutRef.current.addEventListener('scroll', handleScroll);
+  //     return () => layoutRef.current.removeEventListener('scroll', handleScroll)
+  //   }
+  // }, [])
   
   return (
     <div ref={layoutRef} >
-    {renderState&&<div>
       <HeadInfo pageType="defalut" pagetitle="뉴블로 | 뉴블로" pagedescription="뉴블로 설명글"></HeadInfo>
       <Header></Header>
       <Banner></Banner>
@@ -80,10 +78,9 @@ const Home = () => {
           <div className={category===4?"mainPage__categoryBox__category--itemOn":"mainPage__categoryBox__category--itemOff"} onClick={()=>{setCategory(4)}}>TIL</div>
         </div>
       </div>
-      <div className="mainPage--contentsList"style={{display:"flex"}}>
-        {contentsArray.map((item,index)=>(<MainContentsRender item={item} index={index} key={item.id}/>))}
-      </div>
-    </div>}
+      {renderState&&<div className="mainPage--contentsList"style={{display:"flex"}}>
+        {contentsArray.map((item,index)=>(<MainContentsRender item={item} index={index} key={index}/>))}
+      </div>}
     </div>
   )
 }

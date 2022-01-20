@@ -47,9 +47,7 @@ function login(){
               introText:e.data.data.introText,
             }));
 
-            const a = document.createElement("a");
-            a.href = sessionStorage.getItem("pre_url");
-            a.click();
+            history.back();
           }else{
           }
         })

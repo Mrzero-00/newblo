@@ -2,8 +2,8 @@ import { MongoClient } from "mongodb";
 import nc from 'next-connect';
 import middleware from "../../../middleware/middleware";
 
-const postGet = nc();
-postGet.use(middleware);
+const postDelete = nc();
+postDelete.use(middleware);
 const today = new Date();
 
 const result_data={
@@ -14,30 +14,24 @@ const result_data={
 }
 const MONGODB_URL = 'mongodb+srv://newbloTeam:dlfdlfrhdrhddydapdlf@cluster0.isbgk.mongodb.net/NewbloDB?retryWrites=true&w=majority';
 
-postGet.post('/api/post/postGet',(req, res)=>{	
-    const data = req.body;
+postDelete.post('/api/post/postDelete',(req, res)=>{	
+	const data = req.body;
 	MongoClient.connect(MONGODB_URL, { useUnifiedTopology: false }, function (error, client) {
 	if (error){
     	console.log(error);
     	return;
   	}
 	const db = client.db('NewbloDB');
-    db.collection('articles').findOne({ _id:data.postId*1 }, function (err, result){
+    db.collection('articles').remove({_id:data.id*1}, function(err, result){
+        console.log(err);
         if(err){
-
+            // console.log(err);
         }else{
-            db.collection('user').findOne({ blogName:data.blogName }, function (err, userResult){
-                if(err){
-
-                }else{
-                    result_data.code = "0000";
-                    result_data.data = {...result,author:userResult};
-                    res.json(result_data);
-                }
-            })
+            result_data.code = "0000";
+            console.log(result);
+            res.json(result_data);
         }
-    })
-	
+    });
 	});
 });
 
@@ -50,5 +44,5 @@ export const config = {
 
 
 		
-export default postGet;
+export default postDelete;
 

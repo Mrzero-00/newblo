@@ -54,9 +54,34 @@
 }
 
 .modalWindow{
-    width: 100px;
-    height: 100px;
+    width: 160px;
+    padding: 10px 0px;
     position: absolute;
+    background-color: #fff;
+    right: 50px;
+    top:66px;
+    box-shadow:0px 0px 8px #E5E5E5;
+    border-radius: 8px;
+}
+
+.modalList{
+    display: flex;
+    align-items: center;
+    height: 40px;
+    width: 100%;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #292f33;
+    cursor: pointer;
+}
+
+.modalList:hover{
+    background-color: #F0F0F0;
 }
 
 .nav{
@@ -87,4 +112,109 @@
 
 .gnb--post:hover{
     opacity: 1;
+}
+
+.modalListIcon{
+    margin-left: 20px;
+    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+}
+
+.modalIcon_myblog{
+    background-image: url(./img/gnb__home.svg);
+}
+
+.modalIcon_setting{
+    background-image:url(./img/gnb__setting.svg);
+}
+
+.modalIcon_draft{
+    background-image:url(./img/gnb__draft.svg);
+}
+
+.modalIcon_editor{
+    background-image:url(./img/gnb__editor.svg);
+}
+
+.modalIcon_logout{
+    background-image:url(./img/gnb__logout.svg);
+}
+
+.gnb__postIconList{
+    display: flex;
+    align-items: center;
+}
+
+.gnb__postIconList_likeIcon{
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background-image: url(./img/gnb__likeIcon.svg);
+    cursor: pointer;
+}
+
+.gnb__postIconList_replyIcon{
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    background-image: url(./img/gnb__replyIcon.svg);
+    cursor: pointer;
+}
+
+.gnb__postIconList_likeCounter,.gnb__postIconList_replyCounter{
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    margin-right: 20px;
+}
+
+.gnb__postIconList_shareIcon{
+    width: 20px;
+    height: 20px;
+    margin-right: 14px;
+    background-image: url(./img/gnb__shareIcon.svg);
+    cursor: pointer;
+}
+
+
+.gnb__shareMenu{
+    position: absolute;
+    top: 68px;
+    right: 82px;
+    padding: 8px 0px;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 8px rgba(41, 47, 51, 0.15);
+    border-radius: 4px;
+}
+
+.gnb__shareIcon{
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.gnb__shareIcon:hover{
+    background-color: #F0F0F0;
+}
+.gnb__shareIcon--facebook{
+    background-image: url(./img/gnb__shareIcon-facebook.svg);
+}
+
+.gnb__shareIcon--twitter{
+    background-image: url(./img/gnb__shareIcon-twitter.svg);
+}
+
+.gnb__shareIcon--kakao{
+    background-image: url(./img/gnb__shareIcon-kakao.svg);
+}
+
+.gnb__shareIcon--link{
+    background-image: url(./img/gnb__shareIcon-link.svg);
 }

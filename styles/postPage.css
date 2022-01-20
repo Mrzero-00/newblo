@@ -5,6 +5,7 @@
     width: 100%;
     padding:0px 8px;
     margin: 0 auto;
+    margin-top: 16px;
     resize: none;
 }
 
@@ -45,6 +46,7 @@
 
 .contents__writerInfoBox{
     display: flex;
+    align-items: center;
 }
 
 .contents__writerInfoBox_profile{
@@ -57,24 +59,25 @@
 
 .contents__writerInfoBox_writer{
     font-family: Pretendard;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
-    line-height: 19px;
+    line-height: 26px;
     letter-spacing: -0.01em;
     text-align: left;
-    margin-bottom: 1px;
+    margin-right: 4px;
     color: #787878;
 }
 
 .contents__writerInfoBox_time{
     font-family: Pretendard;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 400;
-    line-height: 19px;
+    line-height: 26px;
     letter-spacing: -0.01em;
     text-align: left;
+    margin-right: 12px;
     color: #787878;
 }
 
@@ -138,4 +141,171 @@
     width: 69px;
     height: 32px;
     border-radius: 20px;
+}
+
+.toast__linkCopy{
+    position: absolute;
+    margin: 0 auto ;
+    top: 32px;
+    width: 100%;
+    max-width: 400px;
+    height: 88px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+    background-color: #292F33;
+    box-shadow: 0px 4px 8px rgba(41, 47, 51, 0.25);
+    animation: linkCopy 3s;
+}
+
+.toast__text{
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 32px;
+    letter-spacing: -0.02em;
+    text-align: left;
+    color: #fff;
+}
+
+.toast__cancelIcon{
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    width: 12px;
+    height: 12px;
+    background-image: url(./img/icon_cancel.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: pointer;
+}
+
+@keyframes linkCopy{
+    0%{
+        opacity: 1;
+    }
+    80%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+
+.contents__write_adminBox{
+    display: flex;
+    align-items: center;
+}
+
+.contents__write_adminBox_btn_modifyIcon{
+    width: 19px;
+    height: 19px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(./img/icon_modify.svg);
+}
+
+.contents__write_adminBox_btn_delIcon{
+    width: 19px;
+    height: 19px;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(./img/icon_delete.svg);
+}
+
+.contents__write_adminBox_btn{
+    display: flex;
+    align-items: center;
+}
+
+.contents__write_adminBox_btn_text{
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    margin-left: 4px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #787878;
+}
+
+.deletWindow{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+    top:0px;
+    left: 0px;
+    background-color:rgba(41,47,51,0.3);
+}
+
+.deletWindow_alret{
+    width: 344px;
+    height: 186px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 8px;
+    margin-top: 104px;
+    padding:0px 36px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.deletWindow_alret_text{
+    font-family: Pretendard;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 32px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin-bottom: 22px;
+    color: #292F33;
+    margin-top: 32px;
+}
+
+.deletWindow_alret_btnList{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.deletWindow_alret_btn{
+    width: 132px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Pretendard;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: -0.01em;
+    text-align: center;
+    border: 1px solid #C4C4C4;
+    color: #787878;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.deletWindow_alret_btn:hover{
+    border: 1px solid #292F33;;
+    color: #fff;
+    background-color: #292F33;;
+    font-weight: 700;
+}
+
+.codex-editor>.codex-editor__redactor{
+    padding-bottom: 80px !important;
 }

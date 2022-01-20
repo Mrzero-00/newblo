@@ -20,7 +20,7 @@ function MainContentsRender({item}){
                 </Link>
                 <Link href={`/${item.author.blogName}`}>
                 <a className="mainItemUserBox">
-                    <div className="mainItemUserProfile" style={{backgroundImage:`url("https://proveit.cafe24.com${item.author.profile_img}")`}}></div>
+                    <div className="mainItemUserProfile" style={{backgroundImage:`url("")`}}></div>
                     <div>
                         <div className="mainItemUserName">{item.author.nickname}</div>
                         <div className="mainItemUploadTime">{item.createAt}</div>

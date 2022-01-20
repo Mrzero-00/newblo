@@ -16,17 +16,25 @@ const MONGODB_URL = 'mongodb+srv://newbloTeam:dlfdlfrhdrhddydapdlf@cluster0.isbg
 postList.post('/api/post/postList',(req, res)=>{	
     const data = req.body;
     //console.log(data);
-	MongoClient.connect(MONGODB_URL, { useUnifiedTopology: true }, function (error, client) {
+	MongoClient.connect(MONGODB_URL, { useUnifiedTopology: false }, function (error, client) {
 	if (error){
     	console.log(error);
     	return;
   	}
 	const db = client.db('NewbloDB');
-    db.collection('articles').find().limit(20*data.page).toArray((err,result)=>{
+    if(data.type ==="draft"){
+      db.collection('articles').find({type:"draft",blogName:data.blogName}).limit(20*data.page).toArray((err,result)=>{
         console.log(typeof(20*data.page));
         result_data.data = result;
         res.json(result_data);
-    });
+      });
+    }else{
+      db.collection('articles').find({type:"save"}).limit(20*data.page).toArray((err,result)=>{
+          console.log(typeof(20*data.page));
+          result_data.data = result;
+          res.json(result_data);
+      });
+    }
     });
 })
 

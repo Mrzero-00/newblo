@@ -1,6 +1,6 @@
 .userProfile{
     display: flex;
-    padding-bottom: 32px;
+    padding-bottom: 48px;
 }
 .userProfile__img{
     width: 120px;
@@ -24,7 +24,6 @@
     line-height: 36px;
     letter-spacing: -0.02em;
     text-align: left;
-    margin-bottom: 8px;
     color: #000;
 }
 
@@ -76,10 +75,9 @@
 .userArticle{
     width:100%;
     max-width:688px;
-    cursor:pointer;
-    margin-bottom:24px;
+    margin-top:24px;
     display: block;
-    margin-bottom: 44px;
+    border-bottom: 1px solid #F0F0F0;
 }
 
 .userArticleList{
@@ -143,4 +141,130 @@
     background: -ms-linear-gradient(top, rgba(255,255,255,0) 10%,rgba(255,255,255,1)90%); /* IE10+ */
     background: linear-gradient(to bottom, rgba(255,255,255,0) 10%,rgba(255,255,255,1)90%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#a6000000', endColorstr='#00000000',GradientType=0 ); /* IE6-9 */
+  }
+
+  .userProfile__info__list{
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+  }
+
+  .subBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 72px;
+    height: 32px;
+    margin-left: 8px;
+    background: #292F33;
+    border-radius: 20px;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color:#fff;
+    cursor: pointer;
+  }
+
+  .subBtn--on{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 72px;
+    height: 32px;
+    margin-left: 8px;
+    background: #292F33;
+    border-radius: 20px;
+    font-family: Pretendard;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 19px;
+    letter-spacing: -0.01em;
+    color:#fff;
+    cursor: pointer;
+  }
+
+  .subBtn--on:hover{
+    background-color: #FF6666;
+    color: #fff;
+  }
+
+  .draftList__title{
+      margin-top: 64px;
+    font-family: Pretendard;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 56px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    width: 100%;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #292f33;
+  }
+
+  .draftList{
+      width: 100%;
+      max-width: 736px;
+      padding:0px 8px;
+      margin: 0 auto;
+  }
+
+  .draftList__noneList{
+    width: 100%;
+    text-align: center;
+    font-family: Pretendard;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 38px;
+    letter-spacing: 0em;
+    text-align: center;
+    color: #292f33;
+    margin-top: 64px;
+  }
+
+  .draftBtnBox{
+      display: flex;
+      width: 59px;
+      height: 34px;
+      border-radius: 4px;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+  }
+
+  .draftBtnBox:hover{
+    background: #F0F0F0;
+  }
+
+  .draftBtn__deleteIcon{
+      width: 19px;
+      height: 19px;
+      margin-right: 1px;
+      background-image: url(./img/icon_delete.svg);
+  }
+
+  .draftBtn__text{
+    font-family: Pretendard;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 26px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color:#787878;
+  }
+
+  .userArticle_noneText{
+    font-family: Pretendard;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 38px;
+    letter-spacing: -0.01em;
+    text-align: left;
+    color: #292f33;
   }

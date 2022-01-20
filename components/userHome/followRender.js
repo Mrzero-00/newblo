@@ -1,7 +1,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 
-function UserContentsRender({item}){
+function followRender({item}){
+    console.log(item);
     return(
         <Link href={`/${item.blogName}/${item._id}`}>
             <a className="userArticle">
@@ -27,4 +28,4 @@ function UserContentsRender({item}){
     )
 }
 
-export default UserContentsRender;
+export default followRender;

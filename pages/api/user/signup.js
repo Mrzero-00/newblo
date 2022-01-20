@@ -16,7 +16,7 @@ const MONGODB_URL = 'mongodb+srv://newbloTeam:dlfdlfrhdrhddydapdlf@cluster0.isbg
 
 signup.post('/api/user/signup',(req, res)=>{	
 	const data = req.body;
-	MongoClient.connect(MONGODB_URL, { useUnifiedTopology: true }, function (error, client) {
+	MongoClient.connect(MONGODB_URL, { useUnifiedTopology: false }, function (error, client) {
 	if (error){
     	console.log(error);
     	return;

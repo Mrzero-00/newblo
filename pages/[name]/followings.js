@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import HeadInfo from '../components/HtmlHeader/HeadInfo';
-import UserHeader from '../components/gnb/UserHeader';
-import UserContentsRender from '../components/userHome/UserContentsRender';
-
-function About(props){
-
+import HeadInfo from '../../components/HtmlHeader/HeadInfo';
+import UserHeader from '../../components/gnb/UserHeader';
+import UserContentsRender from '../../components/userHome/UserContentsRender';
+import {useRouter} from 'next/router';
+function followings(props){
+    const router = useRouter();
   const [renderState,setRenderState] = useState(false); 
   const [currentUser,setCurrentUser] = useState("");
   const [userPageState,setUserPageState] = useState({    
@@ -89,7 +89,8 @@ useEffect(() => {
   if(sessionStorage.getItem("user_info")){
     setCurrentUser(JSON.parse(sessionStorage.getItem("user_info")).blogName);
   }
-  userHomeApi(decodeURI(window.location.pathname.slice(1)));
+  userHomeApi(decodeURI(window.location.pathname.slice(1,window.location.pathname.lastIndexOf('/'))));
+  console.log(decodeURI(window.location.pathname.slice(1,window.location.pathname.lastIndexOf('/'))));
 }, []); 
 
       return (
@@ -140,4 +141,4 @@ useEffect(() => {
       )
 };
 
-export default About;
+export default followings;

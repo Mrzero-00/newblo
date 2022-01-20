@@ -16,13 +16,13 @@ const MONGODB_URL = 'mongodb+srv://newbloTeam:dlfdlfrhdrhddydapdlf@cluster0.isbg
 
 userHome.post('/api/userHome/userHome',(req, res)=>{	
     const data = req.body;
-	MongoClient.connect(MONGODB_URL, { useUnifiedTopology: true }, function (error, client) {
+	MongoClient.connect(MONGODB_URL, { useUnifiedTopology: false }, function (error, client) {
 	if (error){
     	console.log(error);
     	return;
   	}
 	const db = client.db('NewbloDB');
-    db.collection('articles').find({ blogName:data.blogName }).toArray(function (err, result){
+    db.collection('articles').find({ blogName:data.blogName,type:"save" }).toArray(function (err, result){
         if(err){
 
         }else{

@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import HeadInfo from '../components/HtmlHeader/HeadInfo';
-import UserHeader from '../components/gnb/UserHeader';
-import UserContentsRender from '../components/userHome/UserContentsRender';
+import HeadInfo from '../../components/HtmlHeader/HeadInfo';
+import UserHeader from '../../components/gnb/UserHeader';
+import followRender from '../../components/userHome/followRender';
 
-function About(props){
+function followers(props){
 
   const [renderState,setRenderState] = useState(false); 
   const [currentUser,setCurrentUser] = useState("");
@@ -89,7 +89,7 @@ useEffect(() => {
   if(sessionStorage.getItem("user_info")){
     setCurrentUser(JSON.parse(sessionStorage.getItem("user_info")).blogName);
   }
-  userHomeApi(decodeURI(window.location.pathname.slice(1)));
+  userHomeApi(decodeURI(window.location.pathname.slice(1,window.location.pathname.lastIndexOf('/'))));
 }, []); 
 
       return (
@@ -130,7 +130,7 @@ useEffect(() => {
               <div style={{width:"100%",maxWidth:"688px"}}>
                 {userPageState.postData.length>0&&
                   <div className="userArticleList">
-                    {userPageState.postData.map((item)=>(<UserContentsRender key={item.id} item={item}></UserContentsRender>))}
+                    {userPageState.postData.map((item)=>(<followRender key={item.id} item={item}></followRender>))}
                   </div>
                 }
                 {userPageState.postData.length===0&&<div className='userArticle_noneText'>아직 작성된 글이 없습니다.</div>}
@@ -140,4 +140,4 @@ useEffect(() => {
       )
 };
 
-export default About;
+export default followers;
