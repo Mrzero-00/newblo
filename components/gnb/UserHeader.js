@@ -2,8 +2,9 @@
 import * as React from 'react';
 import { useState,useEffect } from 'react';
 import Link from 'next/link';
-
+import {useRouter} from 'next/router';
 function UserHeader(props){
+    const router = useRouter();
     const [loginState,setLoginState] = useState(false);
     const [modalState,setModalState] = useState(false);
     const [userState,setUserState] = useState({
@@ -68,12 +69,12 @@ function UserHeader(props){
                 ></div>}
             </div>
             {modalState&&<div className="modalWindow">
-                <Link href={`/${userState.blogName}`}>
-                <a className="modalList">
+                {/* <Link href={`/${userState.blogName}`}> */}
+                <div className="modalList" onClick={()=>{router.push(`/${userState.blogName}`)}}>
                     <div className="modalListIcon modalIcon_myblog"></div>
                     <div>내 블로그</div>
-                </a>
-                </Link>
+                </div>
+                {/* </Link> */}
                 <Link href={`/editor`}>
                 <a className="modalList">
                     <div className="modalListIcon modalIcon_editor"></div>

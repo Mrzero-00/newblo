@@ -2,8 +2,10 @@
 import * as React from 'react';
 import { useState,useEffect } from 'react';
 import Link from 'next/link';
+import {useRouter} from 'next/router';
 
 function Header(){
+    const router = useRouter();
     const [loginState,setLoginState] = useState(false);
     const [modalState,setModalState] = useState(false);
     const [userState,setUserState] = useState({

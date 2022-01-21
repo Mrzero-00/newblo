@@ -162,7 +162,6 @@ function About(){
             </Link>
             <div className="contents__footer_writerInfo">
               <div className='userProfile__info__list'>
-                
                         <Link href={`/${postInfo.blogName}`}>
                           <a className="userProfile__info__nickname">{postInfo.author.nickname}</a>
                         </Link>
@@ -183,8 +182,12 @@ function About(){
               </div>
               <div className="contents__footer_writerInfo_summary">{postInfo.author.introText}</div>
               <div className='userProfile__btn'>
-                <div className="userProfile__btn--small">구독자 {postInfo.author.followers.length}</div>
-                <div className="userProfile__btn--small">구독중 {postInfo.author.following.length}</div>
+                <Link href={`/${postInfo.blogName}/followers`}>
+                    <a className="userProfile__btn--small">구독자 {postInfo.author.followers.length}</a>
+                </Link>
+                <Link href={`/${postInfo.blogName}/followings`}>
+                    <a className="userProfile__btn--small">구독중 {postInfo.author.following.length}</a>
+                </Link>
               </div>
             </div>
           </a>

@@ -2,10 +2,13 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import HeadInfo from '../../components/HtmlHeader/HeadInfo';
 import UserHeader from '../../components/gnb/UserHeader';
-import followRender from '../../components/userHome/followRender';
+import UserContentsRender from '../../components/userHome/UserContentsRender';
+import {useRouter} from 'next/router';
+import UserInfo from '../../components/userHome/UserInfo';
+import FollowRender from '../../components/userHome/FollowRender';
 
-function followers(props){
-
+function followings(props){
+    const router = useRouter();
   const [renderState,setRenderState] = useState(false); 
   const [currentUser,setCurrentUser] = useState("");
   const [userPageState,setUserPageState] = useState({    
@@ -35,18 +38,19 @@ function followers(props){
   });
     
 
-  const userHomeApi = async(user)=>{
+  const followingsApi = async(id)=>{
     const data = new FormData();
-    data.append("blogName",user);
+    data.append("blogName",id);
     try{
       await axios(
         {
           method:"post",
-          url:"/api/userHome/userHome",
+          url:"/api/userHome/followers",
           data
         }
       ).then((e)=>{
         if(e.data.code ==="0000"){
+          console.log(e.data.data);
           setUserPageState(e.data.data);
           setRenderState(true);
         }else{
@@ -56,20 +60,19 @@ function followers(props){
     }
   }
 
-  const subsribeLogic = ()=>{
+  const subsribeLogic = (my,your,type)=>{
     if(currentUser){
-      subsribeApi();
+      subsribeApi(my,your,type);
     }else{
       alert("로그인해주셈")
     }
   }
 
-  const subsribeApi = async()=>{
+  const subsribeApi = async(my,your,type)=>{
     const data = new FormData();
-    const subState =userPageState.userData.followers.includes(currentUser);
-    data.append("myBlogName",decodeURI(currentUser));
-    data.append("yourBlogName",decodeURI(userPageState.userData.blogName));
-    data.append("type",subState?"cancel":"subsribe");
+    data.append("myBlogName",decodeURI(my));
+    data.append("yourBlogName",decodeURI(your));
+    data.append("type",type?"cancel":"subsribe");
     try{
       await axios(
         {
@@ -78,7 +81,7 @@ function followers(props){
           data
         }
       ).then((e)=>{
-        userHomeApi(decodeURI(window.location.pathname.slice(1)));
+        followingsApi(decodeURI(window.location.pathname.slice(1,window.location.pathname.lastIndexOf('/'))));
       })
     }catch{
 
@@ -89,55 +92,26 @@ useEffect(() => {
   if(sessionStorage.getItem("user_info")){
     setCurrentUser(JSON.parse(sessionStorage.getItem("user_info")).blogName);
   }
-  userHomeApi(decodeURI(window.location.pathname.slice(1,window.location.pathname.lastIndexOf('/'))));
+  followingsApi(decodeURI(window.location.pathname.slice(1,window.location.pathname.lastIndexOf('/'))));
 }, []); 
-
       return (
         <>
           {renderState&&<div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
             
               <HeadInfo pagetitle={`${userPageState.userData.nickname} | 뉴블로`} pagedescription={userPageState.userData.introText}></HeadInfo>
               <UserHeader userUrl={userPageState.userData.blogName} nick_name={userPageState.userData.nickname}></UserHeader>
-              <div style={{width:"100%",maxWidth:"688px",marginTop:"64px",borderBottom:"1px solid #F0F0F0",marginBottom:"32px"}}>
-                <div className="userProfile">
-                    <div  className="userProfile__img" style={{backgroundImage:`url("https://proveit.cafe24.com${userPageState.userData.profile_img}")`}}></div>
-                    <div  className="userProfile__info">
-                      <div className='userProfile__info__list'>
-                        <div className="userProfile__info__nickname">{userPageState.userData.nickname}</div>
-                        {currentUser!==userPageState.userData.blogName&&
-                        <div className={userPageState.userData.followers.includes(currentUser)?"subBtn--on":"subBtn"}
-                        onClick={subsribeLogic}
-                        onMouseOver={(e)=>{
-                          if(userPageState.userData.followers.includes(currentUser)){
-                            e.target.innerHTML="구독 취소";
-                          }}}
-                        onMouseLeave={(e)=>{
-                          if(userPageState.userData.followers.includes(currentUser)){
-                            e.target.innerHTML="구독 중";
-                          }}}
-                        >
-                          {userPageState.userData.followers.includes(currentUser)?"구독 중":"구독하기"}
-                        </div>}
-                      </div>
-                        <div className="userProfile__info__summary">{userPageState.userData.introText}</div>
-                        <div className='userProfile__btn'>
-                          <div className="userProfile__btn--small">구독자 {userPageState.userData.followers.length}</div>
-                          <div className="userProfile__btn--small">구독중 {userPageState.userData.following.length}</div>
-                        </div>
-                    </div>
-                </div>
+              <div style={{width:"100%",maxWidth:"688px",marginTop:"64px",borderBottom:"1px solid #F0F0F0"}}>
+                <UserInfo userPageState={userPageState} currentUser={currentUser} subsribeLogic={subsribeLogic}></UserInfo>
               </div>
               <div style={{width:"100%",maxWidth:"688px"}}>
-                {userPageState.postData.length>0&&
-                  <div className="userArticleList">
-                    {userPageState.postData.map((item)=>(<followRender key={item.id} item={item}></followRender>))}
-                  </div>
+                <div className='followText'>{userPageState.userData.nickname}님을 구독하는 {userPageState.userData.followers.length}명</div>
+                {userPageState.userData.followers.length>0&&
+                  userPageState.userData.followers.map((item)=>(<FollowRender item={item} subsribeLogic={subsribeLogic} currentUser={currentUser}></FollowRender>))
                 }
-                {userPageState.postData.length===0&&<div className='userArticle_noneText'>아직 작성된 글이 없습니다.</div>}
               </div>
           </div>}
         </>
       )
 };
 
-export default followers;
+export default followings;
