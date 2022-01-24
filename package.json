@@ -2,7 +2,7 @@
   "name": "newblo",
   "private": true,
   "scripts": {
-    "dev": "cross-env SSL_CRT_FILE=/etc/letsencrypt/live/newblo.co.kr/cert.pem SSL_KEY_FILE=/etc/letsencrypt/live/newblo.co.kr/privkey.pem&& next dev -p 443",
+    "dev": "cross-env next dev -p 80",
     "build": "next build",
     "start": "next start -p 2000",
     "lint": "next lint"
