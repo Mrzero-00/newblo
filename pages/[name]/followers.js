@@ -91,8 +91,10 @@ function followings(props){
 useEffect(() => {
   if(sessionStorage.getItem("user_info")){
     setCurrentUser(JSON.parse(sessionStorage.getItem("user_info")).blogName);
+    followingsApi(decodeURI(window.location.pathname.slice(1,window.location.pathname.lastIndexOf('/'))));
+  }else{
+    followingsApi(decodeURI(window.location.pathname.slice(1,window.location.pathname.lastIndexOf('/'))));
   }
-  followingsApi(decodeURI(window.location.pathname.slice(1,window.location.pathname.lastIndexOf('/'))));
 }, []); 
       return (
         <>

@@ -8,7 +8,7 @@ import UserInfo from '../components/userHome/UserInfo';
 import {useRouter} from 'next/router';
 function About(props){
   const router = useRouter();
-  const [routeState,setRouteState] = useState(false); 
+  const [routeState,setRouteState] = useState(""); 
   const [renderState,setRenderState] = useState(false); 
   const [currentUser,setCurrentUser] = useState("");
   const [userPageState,setUserPageState] = useState({    
@@ -93,7 +93,7 @@ useEffect(() => {
     setCurrentUser(JSON.parse(sessionStorage.getItem("user_info")).blogName);
   }
   userHomeApi(decodeURI(window.location.pathname.slice(1)));
-}, []); 
+}, [routeState]); 
       return (
         <>
           {renderState&&<div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
